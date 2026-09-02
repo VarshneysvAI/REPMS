@@ -1,0 +1,1 @@
+This is Ui version of REPMS which explores the content of Real estate property management system. Its ui is currently based on Html and CSS only Later on that will be Wired up using JS and if needed the code will rebuilt through React with specific Elements.
