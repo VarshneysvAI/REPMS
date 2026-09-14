@@ -131,14 +131,14 @@ Mini project 2 REPMS/
 
 ---
 
-## 👥 4-Member Team Task Distribution
+## 👥 4-Member Team Task Distribution (Group 15 - Section AB)
 
 | Team Member | Module Ownership | Key Deliverables |
 | :--- | :--- | :--- |
-| **Dev 1 (Lead Architect)** | App Shell & Dashboard / Portfolio | `base/reset.css`, `base/layout.css`, `index.html`, `pages/portfolio.html` |
-| **Dev 2 (Tenant & Lease Lead)** | Tenant Directory & Lease Hub | `components/tables.css`, `badges.css`, `forms.css`, `pages/tenants.html`, `pages/leases.html` |
-| **Dev 3 (Finance & Operations)** | Financials & Maintenance | `components/cards.css`, `modals.css`, `charts.css`, `pages/financials.html`, `pages/maintenance.html` |
-| **Dev 4 (Leasing & ESG Analytics)** | Leasing CRM & Analytics | `components/progress.css`, `timeline.css`, `filters.css`, `pages/leasing.html`, `pages/analytics.html` |
+| **Shourya (Dev 1 - Lead Architect)** | App Shell & Dashboard / Portfolio | `base/reset.css`, `base/layout.css`, `index.html`, `pages/portfolio.html` |
+| **Shikhar (Dev 2 - Tenant & Lease Lead)** | Tenant Directory & Lease Hub | `components/tables.css`, `badges.css`, `forms.css`, `pages/tenants.html`, `pages/leases.html` |
+| **Shatakshi (Dev 3 - Finance & Operations)** | Financials & Maintenance | `components/cards.css`, `modals.css`, `charts.css`, `pages/financials.html`, `pages/maintenance.html` |
+| **Shakti Dubey (Dev 4 - Leasing & ESG Analytics)** | Leasing CRM & Analytics | `components/progress.css`, `timeline.css`, `filters.css`, `pages/leasing.html`, `pages/analytics.html` |
 
 ---
 
