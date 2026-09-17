@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REPMS — Enterprise Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <style>
+    /* Scoped Premium Login Styles using Theme Variables */
+    .page-login {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-bg-canvas);
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 440px;
+      padding: 3rem 2.5rem;
+      background-color: var(--color-bg-surface);
+      border: 1px solid var(--color-border-card);
+      border-radius: 16px;
+      box-shadow: var(--shadow-elevation-hover);
+      animation: formEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    @keyframes formEnter {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      color: var(--color-brand-primary);
+    }
+
+    .login-brand i {
+      font-size: 2rem;
+    }
+
+    .login-title {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: var(--color-text-heading);
+    }
+
+    .login-subtitle {
+      color: var(--color-text-muted);
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
+    }
+
+    .premium-input-group {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .premium-input-group i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-text-muted);
+      transition: color 0.3s;
+    }
+
+    .premium-input {
+      width: 100%;
+      background-color: var(--color-bg-canvas);
+      border: 1px solid var(--color-border-card);
+      border-radius: 8px;
+      padding: 0.875rem 1rem 0.875rem 2.75rem;
+      color: var(--color-text-main);
+      transition: all 0.2s ease;
+    }
+
+    .premium-input:focus {
+      outline: none;
+      border-color: var(--color-brand-primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .premium-input:focus + i {
+      color: var(--color-brand-primary);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 0.875rem;
+      border-radius: 8px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      margin-top: 1rem;
+    }
+
+    .theme-toggle-fixed {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: var(--color-bg-surface);
+      border: 1px solid var(--color-border-card);
+      color: var(--color-text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: var(--shadow-elevation);
+    }
+    
+    .theme-toggle-fixed:hover {
+      background-color: var(--color-bg-surface-hover);
+      color: var(--color-text-heading);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body class="page-login">
+
+  <div class="login-card">
+    <div class="login-brand">
+      <i class="bi bi-buildings-fill"></i>
+      <h2 class="mb-0" style="font-family: var(--font-heading); font-weight: 800; letter-spacing: -0.02em;">REPMS</h2>
+    </div>
+    
+    <h3 class="login-title h4">Welcome back</h3>
+    <p class="login-subtitle">Enter your credentials to access the portfolio.</p>
+
+    <form action="index.html">
+      <div class="premium-input-group">
+        <input type="email" class="premium-input" placeholder="Work Email" required>
+        <i class="bi bi-envelope"></i>
+      </div>
+      
+      <div class="premium-input-group">
+        <input type="password" class="premium-input" placeholder="Password" required>
+        <i class="bi bi-lock"></i>
+      </div>
+      
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="form-check">
+          <input class="form-check-input border-secondary" type="checkbox" id="rememberMe">
+          <label class="form-check-label text-muted small" for="rememberMe">
+            Remember me
+          </label>
+        </div>
+        <a href="#" class="text-primary small text-decoration-none fw-medium">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn btn-primary login-btn">
+        Sign In <i class="bi bi-arrow-right ms-2"></i>
+      </button>
+    </form>
+    
+    <div class="text-center mt-4">
+      <p class="text-muted small">Protected by Enterprise SSO</p>
+    </div>
+  </div>
+
+  <button class="theme-toggle-fixed" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Toggle theme">
+    <i class="bi bi-moon-fill" id="themeIcon"></i>
+  </button>
+
+  <script>
+    // Initialize theme from localStorage or default to light
+    const getStoredTheme = () => localStorage.getItem('theme') || 'light';
+    const setStoredTheme = theme => localStorage.setItem('theme', theme);
+
+    const setTheme = theme => {
+      document.documentElement.setAttribute('data-bs-theme', theme);
+      const icon = document.getElementById('themeIcon');
+      if (theme === 'dark') {
+        icon.classList.remove('bi-moon-fill');
+        icon.classList.add('bi-sun-fill');
+      } else {
+        icon.classList.remove('bi-sun-fill');
+        icon.classList.add('bi-moon-fill');
+      }
+    }
+
+    // Set initial theme
+    setTheme(getStoredTheme());
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      setTheme(newTheme);
+      setStoredTheme(newTheme);
+    }
+  </script>
+</body>
+</html>

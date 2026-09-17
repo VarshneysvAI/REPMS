@@ -1,0 +1,71 @@
+/**
+ * REPMS Cards Component - Clean, Flat, Professional SaaS Look
+ */
+
+.rep-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-card);
+  border-radius: 12px;
+  box-shadow: var(--shadow-elevation);
+  transition: box-shadow var(--transition-normal), border-color var(--transition-normal), transform var(--transition-normal);
+  overflow: hidden;
+}
+
+.rep-card__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+  color: var(--color-text-heading);
+}
+
+.rep-card--kpi {
+  padding: 1.5rem;
+  position: relative;
+  height: 100%;
+}
+
+.rep-card--kpi:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-brand-primary);
+  box-shadow: var(--shadow-elevation-hover);
+}
+
+.rep-kpi__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.rep-kpi__label {
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.rep-kpi__value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-text-heading);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.03em;
+}
+
+.rep-kpi__trend {
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.rep-legend-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}

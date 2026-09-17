@@ -1,0 +1,80 @@
+/**
+ * REPMS Portfolio Styles
+ */
+
+/* Scoped to .page-portfolio */
+.page-portfolio .rep-stacker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: var(--color-bg-surface-secondary);
+  padding: 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-border-card);
+}
+
+.page-portfolio .rep-stacker__floor {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-portfolio .rep-stacker__floor-label {
+  width: 56px;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+
+.page-portfolio .rep-stacker__units {
+  display: flex;
+  flex: 1;
+  gap: 8px;
+}
+
+.page-portfolio .rep-unit {
+  flex: 1;
+  padding: 10px 6px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border: 1px solid transparent;
+}
+
+.page-portfolio .rep-unit:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-elevation-hover);
+  z-index: 2;
+}
+
+.page-portfolio .rep-unit--occupied {
+  background-color: var(--status-occupied-bg);
+  color: var(--status-occupied);
+  border-color: rgba(37, 99, 235, 0.2);
+}
+
+.page-portfolio .rep-unit--vacant {
+  background-color: var(--status-vacant-bg);
+  color: var(--status-vacant);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.page-portfolio .rep-unit--renovating {
+  background-color: var(--status-renovating-bg);
+  color: var(--status-renovating);
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+.page-portfolio .rep-unit--delinquent {
+  background-color: var(--status-delinquent-bg);
+  color: var(--status-delinquent);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+[data-bs-theme="dark"] .page-portfolio .rep-unit {
+  border-color: rgba(255, 255, 255, 0.1);
+}

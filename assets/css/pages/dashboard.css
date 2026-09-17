@@ -1,0 +1,39 @@
+/**
+ * REPMS Dashboard Styles
+ */
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+/* Offcanvas Styling for default light/dark themes */
+.rep-offcanvas {
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-main);
+  border-left: 1px solid var(--color-border-card);
+}
+
+.rep-offcanvas .offcanvas-header {
+  border-bottom: 1px solid var(--color-border-card);
+}
+
+.rep-offcanvas .offcanvas-title {
+  color: var(--color-text-heading);
+  font-weight: 700;
+}
+
+.rep-offcanvas .list-group-item {
+  color: var(--color-text-main);
+  border-color: var(--color-border-subtle);
+  font-weight: 500;
+}
+
+.rep-offcanvas .list-group-item:hover {
+  background-color: var(--color-bg-surface-hover);
+  color: var(--color-brand-primary);
+}
+
+.rep-offcanvas .btn-close {
+  filter: var(--bs-btn-close-color); /* Works native to BS5 dark mode */
+}
