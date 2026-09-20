@@ -1,0 +1,461 @@
+/**
+ * REPMS Tenant Directory
+ *
+ * Page-specific styles only.
+ */
+
+.page-tenants {
+    /* Tenant page namespace */
+}
+
+
+/* =========================================================
+   PAGE HEADER
+   ========================================================= */
+
+.page-tenants .tenant-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 1rem;
+
+    margin-bottom: 2rem;
+}
+
+
+.page-tenants .tenant-header__actions {
+    display: flex;
+
+    gap: 0.75rem;
+}
+
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.page-tenants .tenant-summary {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 1rem;
+
+    margin-bottom: 1.5rem;
+}
+
+
+.page-tenants .tenant-summary__card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 1rem;
+
+    padding: 1.25rem;
+
+    background-color: var(--color-bg-surface);
+
+    border: 1px solid var(--color-border-card);
+
+    border-radius: 12px;
+
+    box-shadow: var(--shadow-elevation);
+
+    transition:
+        transform var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+
+.page-tenants .tenant-summary__card:hover {
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-elevation-hover);
+}
+
+
+/* Icon */
+
+.page-tenants .tenant-summary__icon {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    font-size: 1.2rem;
+}
+
+
+.page-tenants .tenant-summary__icon--blue {
+    color: var(--color-brand-primary);
+
+    background-color: var(--status-occupied-bg);
+}
+
+
+.page-tenants .tenant-summary__icon--green {
+    color: var(--status-occupied);
+
+    background-color: var(--status-occupied-bg);
+}
+
+
+.page-tenants .tenant-summary__icon--yellow {
+    color: var(--status-renovating);
+
+    background-color: var(--status-renovating-bg);
+}
+
+
+.page-tenants .tenant-summary__icon--red {
+    color: var(--status-delinquent);
+
+    background-color: var(--status-delinquent-bg);
+}
+
+
+/* Text */
+
+.page-tenants .tenant-summary__label {
+    margin: 0 0 0.25rem;
+
+    color: var(--color-text-muted);
+
+    font-size: 0.72rem;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.04em;
+}
+
+
+.page-tenants .tenant-summary__value {
+    margin: 0;
+
+    color: var(--color-text-heading);
+
+    font-size: 1.75rem;
+
+    font-weight: 800;
+}
+
+
+.page-tenants .tenant-summary__description {
+    margin: 0.15rem 0 0;
+
+    color: var(--color-text-muted);
+
+    font-size: 0.75rem;
+}
+
+
+/* =========================================================
+   FILTERS
+   ========================================================= */
+
+.page-tenants .tenant-filters {
+    display: grid;
+
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+
+    gap: 1rem;
+
+    align-items: end;
+
+    padding: 1.25rem;
+
+    margin-bottom: 1.5rem;
+}
+
+
+.page-tenants .tenant-filters__label {
+    display: block;
+
+    margin-bottom: 0.4rem;
+
+    color: var(--color-text-heading);
+
+    font-size: 0.8rem;
+
+    font-weight: 600;
+}
+
+
+/* Search */
+
+.page-tenants .tenant-search {
+    position: relative;
+}
+
+
+.page-tenants .tenant-search__icon {
+    position: absolute;
+
+    left: 0.8rem;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--color-text-muted);
+}
+
+
+.page-tenants .tenant-search__input {
+    width: 100%;
+
+    min-height: 40px;
+
+    padding: 0.55rem 0.75rem 0.55rem 2.3rem;
+
+    border: 1px solid var(--color-border-card);
+
+    border-radius: 6px;
+
+    background-color: var(--color-bg-surface);
+
+    color: var(--color-text-main);
+
+    outline: none;
+}
+
+
+.page-tenants .tenant-search__input:focus {
+    border-color: var(--color-brand-primary);
+
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* Select */
+
+.page-tenants .tenant-filter-select {
+    width: 100%;
+
+    min-height: 40px;
+
+    padding: 0.55rem 0.75rem;
+
+    border: 1px solid var(--color-border-card);
+
+    border-radius: 6px;
+
+    background-color: var(--color-bg-surface);
+
+    color: var(--color-text-main);
+
+    font-size: 0.875rem;
+
+    outline: none;
+}
+
+
+.page-tenants .tenant-filter-select:focus {
+    border-color: var(--color-brand-primary);
+}
+
+
+/* =========================================================
+   TABLE SECTION
+   ========================================================= */
+
+.page-tenants .tenant-table-section {
+    padding: 0;
+
+    overflow: hidden;
+}
+
+
+.page-tenants .tenant-table-section__header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 1.5rem;
+}
+
+
+.page-tenants .tenant-table-section__subtitle {
+    margin: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: 0.8rem;
+}
+
+
+/* Payment */
+
+.page-tenants .tenant-payment {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.4rem;
+
+    font-size: 0.8rem;
+
+    font-weight: 600;
+}
+
+
+.page-tenants .tenant-payment::before {
+    content: "";
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+}
+
+
+.page-tenants .tenant-payment--paid {
+    color: var(--status-occupied);
+}
+
+
+.page-tenants .tenant-payment--paid::before {
+    background-color: var(--status-occupied);
+}
+
+
+.page-tenants .tenant-payment--overdue {
+    color: var(--status-delinquent);
+}
+
+
+.page-tenants .tenant-payment--overdue::before {
+    background-color: var(--status-delinquent);
+}
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+.page-tenants .tenant-pagination {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 1rem 1.5rem;
+
+    border-top: 1px solid var(--color-border-card);
+}
+
+
+.page-tenants .tenant-pagination__text {
+    margin: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: 0.8rem;
+}
+
+
+.page-tenants .tenant-pagination__buttons {
+    display: flex;
+
+    gap: 0.3rem;
+}
+
+
+.page-tenants .tenant-pagination__button {
+    min-width: 34px;
+    height: 34px;
+
+    border: 1px solid var(--color-border-card);
+
+    border-radius: 6px;
+
+    background-color: var(--color-bg-surface);
+
+    color: var(--color-text-main);
+
+    cursor: pointer;
+}
+
+
+.page-tenants .tenant-pagination__button--active {
+    border-color: var(--color-brand-primary);
+
+    background-color: var(--color-brand-primary);
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1199.98px) {
+
+    .page-tenants .tenant-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-tenants .tenant-filters {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 767.98px) {
+
+    .page-tenants .tenant-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .page-tenants .tenant-header__actions {
+        width: 100%;
+    }
+
+
+    .page-tenants .tenant-header__actions .btn {
+        flex: 1;
+    }
+
+
+    .page-tenants .tenant-summary {
+        grid-template-columns: 1fr;
+    }
+
+
+    .page-tenants .tenant-filters {
+        grid-template-columns: 1fr;
+    }
+
+
+    .page-tenants .tenant-table-section__header {
+        padding: 1rem;
+    }
+
+
+    .page-tenants .tenant-pagination {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+}

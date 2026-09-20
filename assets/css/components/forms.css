@@ -1,0 +1,83 @@
+/**
+ * REPMS Shared Form Components
+ */
+
+
+/* Form label */
+
+.rep-form__label {
+    display: block;
+
+    margin-bottom: 0.4rem;
+
+    color: var(--color-text-heading);
+
+    font-size: 0.8rem;
+
+    font-weight: 600;
+}
+
+
+/* Form control */
+
+.rep-form__control {
+    width: 100%;
+
+    min-height: 40px;
+
+    padding: 0.55rem 0.75rem;
+
+    border: 1px solid var(--color-border-card);
+
+    border-radius: 6px;
+
+    background-color: var(--color-bg-surface);
+
+    color: var(--color-text-main);
+
+    font-size: 0.875rem;
+
+    outline: none;
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+
+.rep-form__control::placeholder {
+    color: var(--color-text-muted);
+}
+
+
+.rep-form__control:focus {
+    border-color: var(--color-brand-primary);
+
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* Search */
+
+.rep-search {
+    position: relative;
+}
+
+
+.rep-search__icon {
+    position: absolute;
+
+    left: 0.8rem;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--color-text-muted);
+
+    pointer-events: none;
+}
+
+
+.rep-search__input {
+    padding-left: 2.3rem;
+}
