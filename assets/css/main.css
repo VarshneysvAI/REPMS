@@ -13,7 +13,11 @@
 @import './components/buttons.css';
 @import './components/cards.css';
 @import './components/badges.css';
+@import './components/tables.css';
+@import './components/forms.css';
 
 /* Layer 4: Scoped Page Styles */
 @import './pages/dashboard.css';
 @import './pages/portfolio.css';
+@import './pages/tenants.css';
+@import './pages/leases.css';
