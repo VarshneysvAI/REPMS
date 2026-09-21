@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financials | REPMS</title>
+    <link rel="stylesheet" href="financial.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">🏢 <span>REPMS</span></div>
+
+    <nav>
+        <a href="index.html">◉ Dashboard</a>
+        <a href="portfolio.html">▦ Portfolio</a>
+        <a href="tenants.html">♙ Tenants</a>
+        <a href="leases.html">▤ Leases</a>
+        <a href="financials.html" class="active">▣ Financials</a>
+        <a href="maintenance.html">🛠 Maintenance</a>
+    </nav>
+
+    <div class="nav-right">
+        <div class="search">⌕ Search...</div>
+        <span>◐</span>
+        <span>♧</span>
+        <span class="profile">S</span>
+        <button>+ Action</button>
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <div class="page-heading">
+        <div>
+            <h1>Financial Overview</h1>
+            <p>Track property revenue, expenses, rent collection and financial performance</p>
+        </div>
+
+        <button class="export-btn">⇩ Export Report</button>
+    </div>
+
+
+    <!-- Financial Cards -->
+
+    <section class="cards">
+
+        <div class="card">
+            <div class="card-title">
+                TOTAL REVENUE
+                <span>↗</span>
+            </div>
+
+            <h2>$1.24M</h2>
+            <p class="positive">↗ +4.8% MoM</p>
+        </div>
+
+
+        <div class="card">
+            <div class="card-title">
+                TOTAL EXPENSES
+                <span>↘</span>
+            </div>
+
+            <h2>$382K</h2>
+            <p class="negative">↗ +2.1% MoM</p>
+        </div>
+
+
+        <div class="card">
+            <div class="card-title">
+                NET OPERATING INCOME
+                <span>$</span>
+            </div>
+
+            <h2>$858K</h2>
+            <p class="positive">↗ +5.6% YoY</p>
+        </div>
+
+
+        <div class="card">
+            <div class="card-title">
+                RENT COLLECTION
+                <span>✓</span>
+            </div>
+
+            <h2>96.8%</h2>
+            <p class="positive">↗ +1.2% MoM</p>
+        </div>
+
+    </section>
+
+
+    <section class="content-grid">
+
+        <!-- Revenue -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <div>
+                    <h2>Revenue Overview</h2>
+                    <p>Monthly property revenue</p>
+                </div>
+
+                <select>
+                    <option>Last 6 Months</option>
+                    <option>Last 12 Months</option>
+                </select>
+            </div>
+
+            <div class="chart">
+
+                <div class="bars">
+                    <div class="bar" style="height:55%"><span>$182K</span></div>
+                    <div class="bar" style="height:68%"><span>$205K</span></div>
+                    <div class="bar" style="height:62%"><span>$198K</span></div>
+                    <div class="bar" style="height:78%"><span>$224K</span></div>
+                    <div class="bar" style="height:72%"><span>$211K</span></div>
+                    <div class="bar" style="height:90%"><span>$242K</span></div>
+                </div>
+
+                <div class="months">
+                    <span>Apr</span>
+                    <span>May</span>
+                    <span>Jun</span>
+                    <span>Jul</span>
+                    <span>Aug</span>
+                    <span>Sep</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Expense Breakdown -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <div>
+                    <h2>Expense Breakdown</h2>
+                    <p>Current month</p>
+                </div>
+            </div>
+
+            <div class="expense">
+
+                <div class="expense-row">
+                    <span>Property Maintenance</span>
+                    <strong>$124K</strong>
+                </div>
+
+                <div class="progress">
+                    <div style="width:72%"></div>
+                </div>
+
+
+                <div class="expense-row">
+                    <span>Utilities</span>
+                    <strong>$86K</strong>
+                </div>
+
+                <div class="progress">
+                    <div style="width:52%"></div>
+                </div>
+
+
+                <div class="expense-row">
+                    <span>Insurance</span>
+                    <strong>$64K</strong>
+                </div>
+
+                <div class="progress">
+                    <div style="width:39%"></div>
+                </div>
+
+
+                <div class="expense-row">
+                    <span>Management</span>
+                    <strong>$48K</strong>
+                </div>
+
+                <div class="progress">
+                    <div style="width:30%"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Rent Collection -->
+
+    <section class="panel table-panel">
+
+        <div class="panel-header">
+            <div>
+                <h2>Rent Collection</h2>
+                <p>Recent payment activity across properties</p>
+            </div>
+
+            <button class="view-btn">View All →</button>
+        </div>
+
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>PROPERTY</th>
+                    <th>TENANT</th>
+                    <th>RENT</th>
+                    <th>DUE DATE</th>
+                    <th>STATUS</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>Skyline Tower</td>
+                    <td>Apex Capital LLC</td>
+                    <td>$14,250</td>
+                    <td>Sep 01, 2026</td>
+                    <td><span class="status paid">Paid</span></td>
+                </tr>
+
+                <tr>
+                    <td>Harborview Condos</td>
+                    <td>Elena Rostova</td>
+                    <td>$3,850</td>
+                    <td>Sep 01, 2026</td>
+                    <td><span class="status paid">Paid</span></td>
+                </tr>
+
+                <tr>
+                    <td>Oakwood Residences</td>
+                    <td>Daniel Carter</td>
+                    <td>$5,200</td>
+                    <td>Sep 05, 2026</td>
+                    <td><span class="status pending">Pending</span></td>
+                </tr>
+
+                <tr>
+                    <td>Metro Retail</td>
+                    <td>Urban Goods Ltd.</td>
+                    <td>$8,600</td>
+                    <td>Sep 03, 2026</td>
+                    <td><span class="status overdue">Overdue</span></td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+</main>
+
+</body>
+</html>
