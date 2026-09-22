@@ -1,0 +1,225 @@
+/**
+ * REPMS Shared Data Tables
+ */
+
+
+/* Table wrapper */
+
+.rep-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border-top: 1px solid var(--color-border-card);
+}
+
+
+/* Main table */
+
+.rep-table {
+    width: 100%;
+
+    margin: 0;
+
+    border-collapse: collapse;
+
+    color: var(--color-text-main);
+
+    font-size: 0.875rem;
+}
+
+
+/* Table heading */
+
+.rep-table th {
+    padding: 0.8rem 1rem;
+
+    background-color: var(--color-bg-surface-hover);
+
+    border-bottom: 1px solid var(--color-border-card);
+
+    color: var(--color-text-muted);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.04em;
+
+    white-space: nowrap;
+}
+
+
+/* Table cells */
+
+.rep-table td {
+    padding: 0.9rem 1rem;
+
+    border-bottom: 1px solid var(--color-border-card);
+
+    vertical-align: middle;
+}
+
+
+/* Row hover */
+
+.rep-table tbody tr {
+    transition: background-color var(--transition-fast);
+}
+
+.rep-table tbody tr:hover {
+    background-color: var(--color-bg-surface-hover);
+}
+
+
+/* Last row */
+
+.rep-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   Identity
+   ========================================================= */
+
+.rep-table__identity {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.75rem;
+
+    min-width: 210px;
+}
+
+
+.rep-table__avatar {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+}
+
+
+.rep-table__name {
+    color: var(--color-text-heading);
+
+    font-weight: 600;
+}
+
+
+.rep-table__secondary {
+    margin-top: 0.15rem;
+
+    color: var(--color-text-muted);
+
+    font-size: 0.75rem;
+}
+
+
+/* =========================================================
+   Property
+   ========================================================= */
+
+.rep-table__property {
+    min-width: 190px;
+}
+
+
+.rep-table__property-name {
+    color: var(--color-text-heading);
+
+    font-weight: 500;
+}
+
+
+.rep-table__unit {
+    margin-top: 0.15rem;
+
+    color: var(--color-text-muted);
+
+    font-size: 0.75rem;
+}
+
+
+/* =========================================================
+   Amount
+   ========================================================= */
+
+.rep-table__amount {
+    color: var(--color-text-heading);
+
+    font-family: var(--font-mono);
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   Actions
+   ========================================================= */
+
+.rep-table__actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.35rem;
+
+    white-space: nowrap;
+}
+
+
+.rep-table__action {
+    width: 32px;
+    height: 32px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid var(--color-border-card);
+
+    border-radius: 6px;
+
+    background-color: var(--color-bg-surface);
+
+    color: var(--color-text-muted);
+
+    cursor: pointer;
+
+    transition: all var(--transition-fast);
+}
+
+
+.rep-table__action:hover {
+    color: var(--color-brand-primary);
+
+    border-color: var(--color-brand-primary);
+
+    background-color: var(--color-bg-surface-hover);
+}
+
+
+/* Mobile */
+
+@media (max-width: 767.98px) {
+
+    .rep-table {
+        min-width: 950px;
+    }
+
+}
