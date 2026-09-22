@@ -1,0 +1,98 @@
+/**
+ * REPMS Design Tokens - Semantic Layer
+ * Proper Light/Dark Mode Implementation Native to Bootstrap 5.3
+ */
+
+@import './primitives.css';
+
+:root, [data-bs-theme="light"] {
+  /* Default Light Enterprise Theme */
+  --color-bg-canvas: #F8FAFC; /* Slate 50 */
+  --color-bg-sidebar: #FFFFFF;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-surface-hover: #F1F5F9; /* Slate 100 */
+  --color-bg-surface-secondary: #F8FAFC;
+  --color-border-card: #E2E8F0; /* Slate 200 */
+  --color-border-subtle: #F1F5F9;
+
+  /* Text colors */
+  --color-text-main: #334155; /* Slate 700 */
+  --color-text-heading: #0F172A; /* Slate 900 */
+  --color-text-muted: #64748B; /* Slate 500 */
+  --color-text-inverse: #FFFFFF;
+
+  /* Shadows */
+  --shadow-elevation: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-elevation-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+
+  /* Status Colors */
+  --status-occupied: var(--color-blue-600);
+  --status-occupied-bg: var(--color-blue-50);
+  --status-vacant: var(--color-emerald-500);
+  --status-vacant-bg: #ECFDF5;
+  --status-renovating: var(--color-amber-500);
+  --status-renovating-bg: #FFFBEB;
+  --status-delinquent: var(--color-rose-500);
+  --status-delinquent-bg: #FEF2F2;
+
+  /* Brand */
+  --color-brand-primary: var(--color-blue-600);
+  --color-brand-primary-hover: var(--color-blue-700);
+  --color-brand-primary-active: var(--color-blue-800);
+  
+  /* Bootstrap overrides */
+  --bs-body-bg: var(--color-bg-canvas);
+  --bs-body-color: var(--color-text-main);
+  --bs-border-color: var(--color-border-card);
+}
+
+[data-bs-theme="dark"] {
+  /* Dark Enterprise Theme */
+  --color-bg-canvas: #06090E; /* Obsidian 950 */
+  --color-bg-sidebar: #0B0F17; /* Obsidian 900 */
+  --color-bg-surface: #111827; /* Obsidian 850 */
+  --color-bg-surface-hover: #1E293B; /* Obsidian 800 */
+  --color-bg-surface-secondary: #0B0F17;
+  --color-border-card: rgba(255, 255, 255, 0.1);
+  --color-border-subtle: rgba(255, 255, 255, 0.05);
+
+  /* Text colors */
+  --color-text-main: #E2E8F0; /* Slate 200 */
+  --color-text-heading: #F8FAFC; /* Slate 50 */
+  --color-text-muted: #94A3B8; /* Slate 400 */
+  --color-text-inverse: #0F172A;
+
+  /* Shadows */
+  --shadow-elevation: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+  --shadow-elevation-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+
+  /* Status Colors */
+  --status-occupied: #60A5FA;
+  --status-occupied-bg: rgba(37, 99, 235, 0.15);
+  --status-vacant: #34D399;
+  --status-vacant-bg: rgba(16, 185, 129, 0.15);
+  --status-renovating: #FBBF24;
+  --status-renovating-bg: rgba(245, 158, 11, 0.15);
+  --status-delinquent: #F87171;
+  --status-delinquent-bg: rgba(239, 68, 68, 0.15);
+
+  /* Brand */
+  --color-brand-primary: var(--color-blue-500);
+  
+  /* Bootstrap overrides */
+  --bs-body-bg: var(--color-bg-canvas);
+  --bs-body-color: var(--color-text-main);
+  --bs-border-color: var(--color-border-card);
+}
+
+/* Base Typographic Semantics */
+:root {
+  --font-family-base: var(--font-sans);
+  --font-family-mono: var(--font-mono);
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --z-layer-sticky: 1020;
+  --z-layer-fixed: 1030;
+  --sidebar-width: 260px;
+  --topbar-height: 64px;
+}
