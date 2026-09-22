@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance | REPMS</title>
+    <link rel="stylesheet" href="maintenance.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">🏢 <span>REPMS</span></div>
+
+    <nav>
+        <a href="index.html">◉ Dashboard</a>
+        <a href="portfolio.html">▦ Portfolio</a>
+        <a href="tenants.html">♙ Tenants</a>
+        <a href="leases.html">▤ Leases</a>
+        <a href="financials.html">▣ Financials</a>
+        <a href="maintenance.html" class="active">🛠 Maintenance</a>
+    </nav>
+
+    <div class="nav-right">
+        <div class="search">⌕ Search...</div>
+        <span>◐</span>
+        <span>♧</span>
+        <span class="profile">S</span>
+        <button>+ Action</button>
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <div class="page-heading">
+
+        <div>
+            <h1>Maintenance</h1>
+            <p>Track work orders, property issues and maintenance activities</p>
+        </div>
+
+        <button class="add-btn">+ Create Work Order</button>
+
+    </div>
+
+
+    <!-- SUMMARY CARDS -->
+
+    <section class="cards">
+
+        <div class="card">
+            <div class="card-title">
+                OPEN WORK ORDERS
+                <span>⚒</span>
+            </div>
+
+            <h2>24</h2>
+            <p class="warning">3 require immediate attention</p>
+        </div>
+
+
+        <div class="card">
+            <div class="card-title">
+                IN PROGRESS
+                <span>↻</span>
+            </div>
+
+            <h2>11</h2>
+            <p class="info">5 scheduled this week</p>
+        </div>
+
+
+        <div class="card">
+            <div class="card-title">
+                COMPLETED THIS MONTH
+                <span>✓</span>
+            </div>
+
+            <h2>68</h2>
+            <p class="positive">↗ +12% from last month</p>
+        </div>
+
+
+        <div class="card">
+            <div class="card-title">
+                MAINTENANCE COST
+                <span>$</span>
+            </div>
+
+            <h2>$42.8K</h2>
+            <p class="neutral">This month</p>
+        </div>
+
+    </section>
+
+
+    <!-- FILTER BAR -->
+
+    <section class="filter-panel">
+
+        <div class="search-box">
+            🔍
+            <input type="text" placeholder="Search work orders, property or unit...">
+        </div>
+
+        <select>
+            <option>All Properties</option>
+            <option>Skyline Tower</option>
+            <option>Oakwood Residences</option>
+            <option>Harborview Condos</option>
+        </select>
+
+        <select>
+            <option>All Priorities</option>
+            <option>Critical</option>
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+        </select>
+
+        <select>
+            <option>All Statuses</option>
+            <option>Open</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+        </select>
+
+    </section>
+
+
+    <!-- WORK ORDERS -->
+
+    <section class="panel">
+
+        <div class="panel-header">
+
+            <div>
+                <h2>Work Orders</h2>
+                <p>Recent maintenance requests and service activities</p>
+            </div>
+
+            <button class="view-btn">View All →</button>
+
+        </div>
+
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>WORK ORDER</th>
+                    <th>PROPERTY & UNIT</th>
+                    <th>ISSUE</th>
+                    <th>PRIORITY</th>
+                    <th>ASSIGNED TO</th>
+                    <th>STATUS</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>
+                        <strong>#WO-1048</strong>
+                        <small>Today, 10:24 AM</small>
+                    </td>
+
+                    <td>
+                        Skyline Tower
+                        <small>Unit 1204</small>
+                    </td>
+
+                    <td>
+                        HVAC Failure
+                    </td>
+
+                    <td>
+                        <span class="priority critical">Critical</span>
+                    </td>
+
+                    <td>
+                        Apex HVAC Services
+                    </td>
+
+                    <td>
+                        <span class="status progress-status">In Progress</span>
+                    </td>
+
+                    <td>
+                        <button class="action-btn">•••</button>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        <strong>#WO-1047</strong>
+                        <small>Today, 09:12 AM</small>
+                    </td>
+
+                    <td>
+                        Oakwood Residences
+                        <small>Unit 402</small>
+                    </td>
+
+                    <td>
+                        Water Leak
+                    </td>
+
+                    <td>
+                        <span class="priority high">High</span>
+                    </td>
+
+                    <td>
+                        QuickFix Plumbing
+                    </td>
+
+                    <td>
+                        <span class="status open-status">Open</span>
+                    </td>
+
+                    <td>
+                        <button class="action-btn">•••</button>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        <strong>#WO-1046</strong>
+                        <small>Yesterday, 04:30 PM</small>
+                    </td>
+
+                    <td>
+                        Harborview Condos
+                        <small>Apartment 4B</small>
+                    </td>
+
+                    <td>
+                        Electrical Repair
+                    </td>
+
+                    <td>
+                        <span class="priority medium">Medium</span>
+                    </td>
+
+                    <td>
+                        Bright Electric Co.
+                    </td>
+
+                    <td>
+                        <span class="status progress-status">In Progress</span>
+                    </td>
+
+                    <td>
+                        <button class="action-btn">•••</button>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        <strong>#WO-1045</strong>
+                        <small>Yesterday, 01:15 PM</small>
+                    </td>
+
+                    <td>
+                        Metro Retail
+                        <small>Suite 210</small>
+                    </td>
+
+                    <td>
+                        Broken Door Lock
+                    </td>
+
+                    <td>
+                        <span class="priority low">Low</span>
+                    </td>
+
+                    <td>
+                        City Locksmith
+                    </td>
+
+                    <td>
+                        <span class="status completed-status">Completed</span>
+                    </td>
+
+                    <td>
+                        <button class="action-btn">•••</button>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        <strong>#WO-1044</strong>
+                        <small>Sep 19, 2026</small>
+                    </td>
+
+                    <td>
+                        Skyline Tower
+                        <small>Floor 8</small>
+                    </td>
+
+                    <td>
+                        Elevator Inspection
+                    </td>
+
+                    <td>
+                        <span class="priority medium">Medium</span>
+                    </td>
+
+                    <td>
+                        LiftCare Services
+                    </td>
+
+                    <td>
+                        <span class="status completed-status">Completed</span>
+                    </td>
+
+                    <td>
+                        <button class="action-btn">•••</button>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <!-- BOTTOM SECTION -->
+
+    <section class="bottom-grid">
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <div>
+                    <h2>Upcoming Maintenance</h2>
+                    <p>Scheduled activities</p>
+                </div>
+            </div>
+
+            <div class="schedule">
+
+                <div class="schedule-item">
+                    <div class="date">
+                        <strong>22</strong>
+                        <span>SEP</span>
+                    </div>
+
+                    <div>
+                        <strong>HVAC Preventive Service</strong>
+                        <p>Skyline Tower · Floors 8–12</p>
+                    </div>
+                </div>
+
+
+                <div class="schedule-item">
+                    <div class="date">
+                        <strong>24</strong>
+                        <span>SEP</span>
+                    </div>
+
+                    <div>
+                        <strong>Fire Safety Inspection</strong>
+                        <p>Oakwood Residences</p>
+                    </div>
+                </div>
+
+
+                <div class="schedule-item">
+                    <div class="date">
+                        <strong>27</strong>
+                        <span>SEP</span>
+                    </div>
+
+                    <div>
+                        <strong>Elevator Maintenance</strong>
+                        <p>Harborview Condos</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <div>
+                    <h2>Maintenance Summary</h2>
+                    <p>Current month</p>
+                </div>
+            </div>
+
+            <div class="summary-row">
+                <span>Preventive Maintenance</span>
+                <strong>42%</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Emergency Repairs</span>
+                <strong>24%</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>General Requests</span>
+                <strong>34%</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>
