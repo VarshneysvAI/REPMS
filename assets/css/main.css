@@ -15,9 +15,14 @@
 @import './components/badges.css';
 @import './components/tables.css';
 @import './components/forms.css';
+@import './components/progress.css';
+@import './components/timeline.css';
+@import './components/filters.css';
 
 /* Layer 4: Scoped Page Styles */
 @import './pages/dashboard.css';
 @import './pages/portfolio.css';
 @import './pages/tenants.css';
 @import './pages/leases.css';
+@import './pages/leasing.css';
+@import './pages/analytics.css';

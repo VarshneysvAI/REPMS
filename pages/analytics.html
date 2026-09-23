@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REPMS — ESG Sustainability & Asset Yield Analytics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body class="rep-body">
+  
+  <!-- TOP NAVBAR -->
+  <nav class="navbar navbar-expand-lg rep-navbar sticky-top">
+    <div class="container-fluid px-4">
+      <!-- Brand -->
+      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="../index.html">
+        <i class="bi bi-buildings-fill text-primary"></i> REPMS
+      </a>
+      
+      <!-- Mobile Toggles -->
+      <div class="d-flex align-items-center gap-3 d-lg-none">
+        <button class="btn btn-link text-muted p-0 border-0 theme-toggle-btn" aria-label="Toggle theme">
+          <i class="bi bi-moon-fill fs-5 theme-icon"></i>
+        </button>
+        <button class="navbar-toggler border-0 p-0 text-muted" type="button" data-bs-toggle="collapse" data-bs-target="#topNavbar">
+          <i class="bi bi-list fs-2"></i>
+        </button>
+      </div>
+
+      <!-- Collapsible Content -->
+      <div class="collapse navbar-collapse" id="topNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-1 mt-3 mt-lg-0">
+          <li class="nav-item"><a class="nav-link" href="../index.html"><i class="bi bi-speedometer2 me-1 d-none d-lg-inline"></i> Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="portfolio.html"><i class="bi bi-building me-1 d-none d-lg-inline"></i> Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="tenants.html"><i class="bi bi-people me-1 d-none d-lg-inline"></i> Tenants</a></li>
+          <li class="nav-item"><a class="nav-link" href="leases.html"><i class="bi bi-file-earmark-text me-1 d-none d-lg-inline"></i> Leases</a></li>
+          <li class="nav-item"><a class="nav-link" href="../dev3/financial.html"><i class="bi bi-cash-coin me-1 d-none d-lg-inline"></i> Financials</a></li>
+          <li class="nav-item"><a class="nav-link" href="../dev3/maintenance.html"><i class="bi bi-tools me-1 d-none d-lg-inline"></i> Maintenance</a></li>
+          <li class="nav-item"><a class="nav-link" href="leasing.html"><i class="bi bi-key me-1 d-none d-lg-inline"></i> Leasing</a></li>
+          <li class="nav-item"><a class="nav-link active" href="analytics.html"><i class="bi bi-graph-up-arrow me-1 d-none d-lg-inline"></i> Analytics</a></li>
+        </ul>
+
+        <!-- Right Side Utilities -->
+        <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-3 mt-3 mt-lg-0">
+          <!-- Search Box -->
+          <div class="d-flex align-items-center rounded px-3 py-1 search-wrapper">
+            <i class="bi bi-search text-muted me-2"></i>
+            <input type="text" class="bg-transparent border-0 w-100" placeholder="Search analytics & ESG metrics..." style="outline: none; font-size: 0.875rem; color: var(--color-text-main);">
+            <kbd class="d-none d-md-block search-kbd">Ctrl K</kbd>
+          </div>
+
+          <!-- Desktop Theme & Notifications -->
+          <div class="d-none d-lg-flex align-items-center gap-3">
+            <button class="btn btn-link text-muted p-0 border-0 theme-toggle-btn" aria-label="Toggle theme">
+              <i class="bi bi-moon-fill fs-5 theme-icon"></i>
+            </button>
+            <div class="position-relative cursor-pointer text-muted">
+              <i class="bi bi-bell fs-5"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.55rem;">2</span>
+            </div>
+          </div>
+
+          <!-- User Dropdown -->
+          <div class="dropdown">
+            <button class="btn btn-link text-decoration-none p-0 d-flex align-items-center gap-2 w-100" type="button" data-bs-toggle="dropdown">
+              <img src="https://i.pravatar.cc/32?img=47" alt="User" class="rounded-circle" width="32" height="32">
+              <div class="text-start d-lg-none">
+                <div class="fw-bold lh-1" style="font-size: 0.9rem; color: var(--color-text-heading);">Sarah Jenkins</div>
+                <div class="text-muted" style="font-size: 0.75rem;">Senior Asset Director</div>
+              </div>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-lg-end shadow-sm border mt-2 mt-lg-3" style="border-color: var(--color-border-card) !important; background-color: var(--color-bg-surface);">
+              <li><div class="dropdown-item-text fw-bold d-none d-lg-block">Sarah Jenkins</div></li>
+              <li><div class="dropdown-item-text text-muted small d-none d-lg-block mb-2">Senior Asset Director</div></li>
+              <li><a class="dropdown-item" href="#">Profile Settings</a></li>
+              <li><a class="dropdown-item" href="#">Manage Access</a></li>
+              <li><hr class="dropdown-divider border-secondary"></li>
+              <li><a class="dropdown-item text-danger" href="../login.html">Sign Out</a></li>
+            </ul>
+          </div>
+
+          <!-- Quick Action -->
+          <button class="btn btn-primary btn-sm ms-lg-2 mt-2 mt-lg-0" onclick="alert('Exporting ESG Audit & Asset Yield PDF Report...')">
+            <i class="bi bi-file-earmark-pdf me-1"></i> Export ESG Audit
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN PAGE CONTENT -->
+  <main class="app-main page-analytics px-4 py-4">
+    
+    <!-- 1. Executive Header -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+      <div>
+        <h1 class="rep-page-title mb-1" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.75rem;">ESG Sustainability & Asset Yield Analytics</h1>
+        <p class="rep-page-subtitle text-muted mb-0" style="font-size: 0.9rem;">Portfolio environmental compliance telemetry, Energy Star ratings, and yield cap rate breakdown.</p>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-secondary btn-sm" onclick="alert('Syncing live Energy Star API benchmarks...')">
+          <i class="bi bi-arrow-repeat me-1"></i> Sync Benchmarks
+        </button>
+        <button class="btn btn-success btn-sm" onclick="alert('Generating LEED Compliance Audit Report...')">
+          <i class="bi bi-patch-check me-1"></i> Audit Compliance
+        </button>
+      </div>
+    </div>
+
+    <!-- 2. KPI Metric Strip -->
+    <div class="row g-3 mb-4">
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="rep-metric-card">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="text-muted small fw-medium">Portfolio Cap Rate</span>
+            <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">+0.45% YoY</span>
+          </div>
+          <div class="rep-metric-val">6.85%</div>
+          <div class="text-muted small mt-1"><i class="bi bi-graph-up me-1"></i> Outperforming Regional Index</div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="rep-metric-card">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="text-muted small fw-medium">Avg. Yield / SqFt</span>
+            <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Top 5% Market</span>
+          </div>
+          <div class="rep-metric-val">$42.50<span class="fs-6 font-normal">/sqft</span></div>
+          <div class="text-muted small mt-1"><i class="bi bi-currency-dollar me-1"></i> +$3.20 vs. 2025 Benchmark</div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="rep-metric-card">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="text-muted small fw-medium">ESG Energy Star Score</span>
+            <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">LEED Platinum Avg</span>
+          </div>
+          <div class="rep-metric-val">88<span class="fs-6 font-normal"> / 100</span></div>
+          <div class="text-muted small mt-1">
+            <div class="progress mt-2" style="height: 6px; background-color: rgba(255,255,255,0.08);">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 88%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="rep-metric-card">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="text-muted small fw-medium">Carbon Reduction</span>
+            <span class="badge bg-emerald-subtle text-success border border-success-subtle rounded-pill">2026 Target Met</span>
+          </div>
+          <div class="rep-metric-val">-340 MT</div>
+          <div class="text-muted small mt-1"><i class="bi bi-tree me-1"></i> Equivalent to 15,200 trees</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Asset Yield Comparison & Cap Rate Analysis -->
+    <div class="row g-4 mb-5">
+      
+      <!-- Left Column: Asset Class Cap Rate Comparison -->
+      <div class="col-12 col-lg-7">
+        <div class="card bg-surface border-card h-100 p-4" style="background-color: var(--color-bg-surface); border: 1px solid var(--color-border-card); border-radius: 0.75rem;">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h5 class="fw-bold mb-0 text-heading"><i class="bi bi-pie-chart-fill text-primary me-2"></i> Asset Class Cap Rate & Yield Performance</h5>
+              <p class="text-muted small mb-0">Comparative annual NOI yield breakdown across property sectors.</p>
+            </div>
+            <span class="badge bg-outline-secondary">Q3 2026 Benchmark</span>
+          </div>
+
+          <div class="yield-row">
+            <div class="yield-label">Class-A Office</div>
+            <div class="yield-track">
+              <div class="yield-fill" style="width: 78.2%;"></div>
+            </div>
+            <div class="yield-value">7.82%</div>
+          </div>
+
+          <div class="yield-row">
+            <div class="yield-label">Logistics Parks</div>
+            <div class="yield-track">
+              <div class="yield-fill" style="width: 71.5%; background: linear-gradient(90deg, #059669, #10b981);"></div>
+            </div>
+            <div class="yield-value">7.15%</div>
+          </div>
+
+          <div class="yield-row">
+            <div class="yield-label">Retail Strip Centers</div>
+            <div class="yield-track">
+              <div class="yield-fill" style="width: 64.0%; background: linear-gradient(90deg, #d97706, #f59e0b);"></div>
+            </div>
+            <div class="yield-value">6.40%</div>
+          </div>
+
+          <div class="yield-row mb-4">
+            <div class="yield-label">Multi-Family Resi</div>
+            <div class="yield-track">
+              <div class="yield-fill" style="width: 59.5%; background: linear-gradient(90deg, #7c3aed, #a855f7);"></div>
+            </div>
+            <div class="yield-value">5.95%</div>
+          </div>
+
+          <div class="p-3 rounded bg-dark border border-secondary border-opacity-25 mt-auto">
+            <div class="d-flex align-items-center gap-3">
+              <i class="bi bi-lightning-charge-fill text-warning fs-3"></i>
+              <div>
+                <div class="fw-bold small text-heading">Yield Optimization Recommendation</div>
+                <div class="text-muted small">Converting underutilized Class-A office amenity floors into flex-coworking spaces increases projected Cap Rate by +0.82%.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Environmental Energy Grid Breakdown -->
+      <div class="col-12 col-lg-5">
+        <div class="card bg-surface border-card h-100 p-4" style="background-color: var(--color-bg-surface); border: 1px solid var(--color-border-card); border-radius: 0.75rem;">
+          <h5 class="fw-bold mb-1 text-heading"><i class="bi bi-brightness-high-fill text-warning me-2"></i> Solar vs. Grid Energy Mix</h5>
+          <p class="text-muted small mb-4">Real-time solar rooftop generation telemetry.</p>
+
+          <div class="mb-4 text-center">
+            <div class="fs-1 fw-bold font-monospace text-success mb-1">64.2%</div>
+            <div class="text-muted small">Clean Solar Energy Off-Grid Autonomy</div>
+          </div>
+
+          <div class="mb-3">
+            <div class="d-flex justify-content-between small text-muted mb-1">
+              <span>Rooftop Solar Array Generation</span>
+              <span class="text-success fw-bold">1.82 MW</span>
+            </div>
+            <div class="rep-progress rep-progress--lg">
+              <div class="rep-progress-bar rep-progress-bar--emerald" style="width: 64%;"></div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="d-flex justify-content-between small text-muted mb-1">
+              <span>Municipal Electric Grid Load</span>
+              <span class="text-warning fw-bold">1.02 MW</span>
+            </div>
+            <div class="rep-progress rep-progress--lg">
+              <div class="rep-progress-bar rep-progress-bar--warning" style="width: 36%;"></div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="d-flex justify-content-between small text-muted mb-1">
+              <span>EV Charging Station Draw</span>
+              <span class="text-primary fw-bold">240 kW</span>
+            </div>
+            <div class="rep-progress rep-progress--lg">
+              <div class="rep-progress-bar" style="width: 20%;"></div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center pt-3 border-top border-secondary border-opacity-25 mt-auto">
+            <span class="text-muted small"><i class="bi bi-shield-check text-success me-1"></i> Battery Storage Active</span>
+            <span class="badge bg-success-subtle text-success">98.4% Efficiency</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 4. Executive ESG Property Scorecards Section -->
+    <div class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h4 class="fw-bold mb-0 text-heading"><i class="bi bi-award-fill text-warning me-2"></i> Executive ESG Property Scorecards</h4>
+          <p class="text-muted small mb-0">Certified Energy Star ratings, LEED status, and waste management audits.</p>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary" onclick="alert('Downloading raw CSV ESG telemetry...')">
+          <i class="bi bi-download me-1"></i> Download CSV
+        </button>
+      </div>
+
+      <div class="row g-4">
+        
+        <!-- Scorecard 1 -->
+        <div class="col-12 col-md-4">
+          <div class="esg-property-card">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <h6 class="fw-bold text-heading mb-0">Grand Horizon Tower</h6>
+                <span class="text-muted small">Class-A Commercial Office</span>
+              </div>
+              <span class="leed-badge leed-badge--platinum">LEED Platinum</span>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-center py-2 mb-3">
+              <div class="rep-gauge-ring">
+                <svg>
+                  <circle class="bg-circle" cx="50" cy="50" r="40"></circle>
+                  <circle class="meter-circle" cx="50" cy="50" r="40" style="stroke-dashoffset: 15; stroke: #10b981;"></circle>
+                </svg>
+                <div class="rep-gauge-val">94</div>
+              </div>
+            </div>
+
+            <div class="space-y-2 border-top border-secondary border-opacity-25 pt-3">
+              <div class="d-flex justify-content-between small text-muted mb-2">
+                <span><i class="bi bi-sun me-1 text-warning"></i> Solar Offset</span>
+                <span class="text-heading fw-bold">42% Grid Offset</span>
+              </div>
+              <div class="d-flex justify-content-between small text-muted mb-2">
+                <span><i class="bi bi-ev-station me-1 text-info"></i> EV Charging</span>
+                <span class="text-heading fw-bold">16 Stalls Active</span>
+              </div>
+              <div class="d-flex justify-content-between small text-muted">
+                <span><i class="bi bi-trash3 me-1 text-success"></i> Waste Diversion</span>
+                <span class="text-heading fw-bold">91.4% Recycled</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scorecard 2 -->
+        <div class="col-12 col-md-4">
+          <div class="esg-property-card">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <h6 class="fw-bold text-heading mb-0">Apex Logistics Hub</h6>
+                <span class="text-muted small">Industrial Logistics Park</span>
+              </div>
+              <span class="leed-badge leed-badge--gold">LEED Gold</span>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-center py-2 mb-3">
+              <div class="rep-gauge-ring">
+                <svg>
+                  <circle class="bg-circle" cx="50" cy="50" r="40"></circle>
+                  <circle class="meter-circle" cx="50" cy="50" r="40" style="stroke-dashoffset: 22; stroke: #3b82f6;"></circle>
+                </svg>
+                <div class="rep-gauge-val">91</div>
+              </div>
+            </div>
+
+            <div class="space-y-2 border-top border-secondary border-opacity-25 pt-3">
+              <div class="d-flex justify-content-between small text-muted mb-2">
+                <span><i class="bi bi-sun me-1 text-warning"></i> Solar Offset</span>
+                <span class="text-heading fw-bold">68% Grid Offset</span>
+              </div>
+              <div class="d-flex justify-content-between small text-muted mb-2">
+                <span><i class="bi bi-droplet me-1 text-primary"></i> Rain Harvesting</span>
+                <span class="text-heading fw-bold">100% Irrigation</span>
+              </div>
+              <div class="d-flex justify-content-between small text-muted">
+                <span><i class="bi bi-trash3 me-1 text-success"></i> Waste Diversion</span>
+                <span class="text-heading fw-bold">88.2% Recycled</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scorecard 3 -->
+        <div class="col-12 col-md-4">
+          <div class="esg-property-card">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <h6 class="fw-bold text-heading mb-0">Riverside Retail Plaza</h6>
+                <span class="text-muted small">Retail Strip Center</span>
+              </div>
+              <span class="leed-badge leed-badge--silver">LEED Silver</span>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-center py-2 mb-3">
+              <div class="rep-gauge-ring">
+                <svg>
+                  <circle class="bg-circle" cx="50" cy="50" r="40"></circle>
+                  <circle class="meter-circle" cx="50" cy="50" r="40" style="stroke-dashoffset: 45; stroke: #f59e0b;"></circle>
+                </svg>
+                <div class="rep-gauge-val">82</div>
+              </div>
+            </div>
+
+            <div class="space-y-2 border-top border-secondary border-opacity-25 pt-3">
+              <div class="d-flex justify-content-between small text-muted mb-2">
+                <span><i class="bi bi-sun me-1 text-warning"></i> Solar Offset</span>
+                <span class="text-heading fw-bold">28% Grid Offset</span>
+              </div>
+              <div class="d-flex justify-content-between small text-muted mb-2">
+                <span><i class="bi bi-lightbulb me-1 text-warning"></i> LED Retrofit</span>
+                <span class="text-heading fw-bold">100% Complete</span>
+              </div>
+              <div class="d-flex justify-content-between small text-muted">
+                <span><i class="bi bi-trash3 me-1 text-success"></i> Waste Diversion</span>
+                <span class="text-heading fw-bold">76.5% Recycled</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 5. Net-Zero Carbon Roadmap Timeline -->
+    <div class="card bg-surface border-card p-4" style="background-color: var(--color-bg-surface); border: 1px solid var(--color-border-card); border-radius: 0.75rem;">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h5 class="fw-bold mb-0 text-heading"><i class="bi bi-signpost-split-fill text-success me-2"></i> Net-Zero Carbon 2025–2030 Portfolio Roadmap</h5>
+          <p class="text-muted small mb-0">Milestone progress tracking towards zero operational emissions.</p>
+        </div>
+        <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2">On Track for 2030</span>
+      </div>
+
+      <ul class="rep-timeline">
+        
+        <!-- Item 1: 2024 -->
+        <li class="rep-timeline-item">
+          <div class="rep-timeline-icon rep-timeline-icon--success">
+            <i class="bi bi-check-lg"></i>
+          </div>
+          <div class="rep-timeline-content">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <div class="rep-timeline-title">100% LED Lighting & Smart Sensor Retrofit</div>
+              <span class="rep-timeline-date">COMPLETED • DEC 2024</span>
+            </div>
+            <p class="text-muted small mb-0">Replaced all halogen & fluorescent lighting fixtures across 42 properties with occupancy-sensing LED arrays, cutting baseline electrical consumption by 22%.</p>
+          </div>
+        </li>
+
+        <!-- Item 2: 2025 -->
+        <li class="rep-timeline-item">
+          <div class="rep-timeline-icon rep-timeline-icon--warning">
+            <i class="bi bi-arrow-repeat"></i>
+          </div>
+          <div class="rep-timeline-content">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <div class="rep-timeline-title">Commercial Rooftop Solar Expansion (4.2 MW)</div>
+              <span class="rep-timeline-date text-warning">IN PROGRESS • TARGET Q4 2025</span>
+            </div>
+            <p class="text-muted small mb-0">Installing high-efficiency monocrystalline solar panels across 14 commercial office towers and logistics parks. Phase 1 active at Grand Horizon Tower.</p>
+          </div>
+        </li>
+
+        <!-- Item 3: 2026 -->
+        <li class="rep-timeline-item">
+          <div class="rep-timeline-icon rep-timeline-icon--pending">
+            <i class="bi bi-cpu"></i>
+          </div>
+          <div class="rep-timeline-content">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <div class="rep-timeline-title">AI-Driven HVAC Predictive Climate Control</div>
+              <span class="rep-timeline-date">SCHEDULED • Q2 2026</span>
+            </div>
+            <p class="text-muted small mb-0">Deploying IoT building automation sensors to optimize chiller plant cycles and peak load shedding dynamically based on weather forecasts.</p>
+          </div>
+        </li>
+
+        <!-- Item 4: 2030 -->
+        <li class="rep-timeline-item">
+          <div class="rep-timeline-icon rep-timeline-icon--pending">
+            <i class="bi bi-flag-fill"></i>
+          </div>
+          <div class="rep-timeline-content">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <div class="rep-timeline-title">Full Net-Zero Operational Carbon Neutrality</div>
+              <span class="rep-timeline-date">TARGET • DEC 2030</span>
+            </div>
+            <p class="text-muted small mb-0">100% renewable energy sourcing, zero landfill waste diversion certification, and certified Scope 1 & 2 carbon neutral operations across entire portfolio.</p>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+  </main>
+
+  <!-- Bootstrap JS & Custom Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Theme Switcher Management
+    const getStoredTheme = () => localStorage.getItem('theme') || 'light';
+    const setStoredTheme = theme => localStorage.setItem('theme', theme);
+
+    const setTheme = theme => {
+      document.documentElement.setAttribute('data-bs-theme', theme);
+      const icons = document.querySelectorAll('.theme-icon');
+      icons.forEach(icon => {
+        if (theme === 'dark') {
+          icon.classList.remove('bi-moon-fill');
+          icon.classList.add('bi-sun-fill');
+        } else {
+          icon.classList.remove('bi-sun-fill');
+          icon.classList.add('bi-moon-fill');
+        }
+      });
+    }
+
+    setTheme(getStoredTheme());
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      setTheme(newTheme);
+      setStoredTheme(newTheme);
+    }
+
+    document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', toggleTheme);
+    });
+  </script>
+</body>
+</html>
