@@ -25,8 +25,9 @@
 .rep-navbar .nav-link {
   color: var(--color-text-muted);
   font-weight: 500;
-  padding: 0.5rem 0.875rem !important;
+  padding: 0.45rem 0.65rem !important;
   border-radius: 6px;
+  font-size: 0.875rem;
   transition: all var(--transition-fast);
 }
 
@@ -43,6 +44,22 @@
 
 .rep-navbar .navbar-toggler:focus {
   box-shadow: none;
+}
+
+/* Hide nav text on xxl and below, show only icons — prevents overflow with 8 items */
+@media (max-width: 1399.98px) {
+  .rep-navbar .nav-link {
+    font-size: 0 !important;         /* hides text node */
+    padding: 0.5rem 0.7rem !important;
+  }
+  .rep-navbar .nav-link i {
+    display: inline !important;
+    font-size: 1.1rem;               /* restores icon size */
+    margin-right: 0 !important;
+  }
+  .rep-navbar .nav-link.active {
+    font-size: 0 !important;
+  }
 }
 
 /* Search input specific classes */
