@@ -1,0 +1,174 @@
+/* Scoped Page Styles for Leasing CRM & Vacancy Showcase (.page-leasing) */
+
+/* Metric Cards */
+.page-leasing .rep-metric-card {
+  background: var(--color-bg-surface, #1e293b);
+  border: 1px solid var(--color-border-card, rgba(255, 255, 255, 0.08));
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.page-leasing .rep-metric-card:hover {
+  border-color: var(--color-brand-primary, #2563eb);
+}
+
+.page-leasing .rep-metric-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text-heading, #f9fafb);
+}
+
+/* Available Units Grid Cards */
+.page-leasing .unit-card {
+  background: var(--color-bg-surface, #1e293b);
+  border: 1px solid var(--color-border-card, rgba(255, 255, 255, 0.08));
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: transform 0.25 ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-leasing .unit-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-brand-primary, #2563eb);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.page-leasing .unit-card-img-wrap {
+  position: relative;
+  height: 170px;
+  overflow: hidden;
+  background-color: #0f172a;
+}
+
+.page-leasing .unit-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.page-leasing .unit-card:hover .unit-card-img-wrap img {
+  transform: scale(1.05);
+}
+
+.page-leasing .unit-card-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+
+.page-leasing .unit-card-body {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-leasing .unit-card-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-text-heading, #f9fafb);
+  margin-bottom: 0.25rem;
+}
+
+.page-leasing .unit-card-price {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #10b981;
+}
+
+.page-leasing .unit-card-specs {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.825rem;
+  color: var(--color-text-muted, #9ca3af);
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* CRM Lead Funnel Kanban Board */
+.page-leasing .crm-kanban-wrapper {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
+}
+
+.page-leasing .crm-column {
+  flex: 0 0 280px;
+  background: var(--color-bg-surface, #1e293b);
+  border: 1px solid var(--color-border-card, rgba(255, 255, 255, 0.08));
+  border-radius: 0.75rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 450px;
+}
+
+.page-leasing .crm-column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border-card, rgba(255, 255, 255, 0.08));
+}
+
+.page-leasing .crm-column-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-heading, #f9fafb);
+}
+
+.page-leasing .crm-card {
+  background: var(--color-bg-base, #0b0f17);
+  border: 1px solid var(--color-border-card, rgba(255, 255, 255, 0.08));
+  border-radius: 0.5rem;
+  padding: 0.875rem;
+  margin-bottom: 0.875rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  cursor: grab;
+}
+
+.page-leasing .crm-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-brand-primary, #2563eb);
+}
+
+.page-leasing .crm-applicant-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.925rem;
+  color: var(--color-text-heading, #f9fafb);
+}
+
+.page-leasing .crm-target-unit {
+  font-size: 0.8rem;
+  color: var(--color-text-muted, #9ca3af);
+}
+
+.page-leasing .crm-metric-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  background-color: rgba(37, 99, 235, 0.15);
+  color: #3b82f6;
+}

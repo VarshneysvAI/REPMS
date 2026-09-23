@@ -1,0 +1,83 @@
+/* REPMS Component: Vertical Milestone Timeline */
+
+.rep-timeline {
+  position: relative;
+  padding-left: 1.75rem;
+  margin: 0;
+  list-style: none;
+}
+
+.rep-timeline::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 11px;
+  width: 2px;
+  background-color: var(--color-border-card, rgba(255, 255, 255, 0.1));
+}
+
+.rep-timeline-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.rep-timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.rep-timeline-icon {
+  position: absolute;
+  left: -1.75rem;
+  top: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  background-color: var(--color-bg-surface, #1e293b);
+  border: 2px solid var(--color-brand-primary, #2563eb);
+  color: var(--color-brand-primary, #2563eb);
+  z-index: 2;
+}
+
+.rep-timeline-icon--success {
+  border-color: #10b981;
+  color: #10b981;
+  background-color: rgba(16, 185, 129, 0.15);
+}
+
+.rep-timeline-icon--warning {
+  border-color: #f59e0b;
+  color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.15);
+}
+
+.rep-timeline-icon--pending {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-text-muted, #9ca3af);
+  background-color: var(--color-bg-surface, #1e293b);
+}
+
+.rep-timeline-content {
+  background: var(--color-bg-surface, #1e293b);
+  border: 1px solid var(--color-border-card, rgba(255, 255, 255, 0.08));
+  border-radius: 0.5rem;
+  padding: 0.875rem 1rem;
+}
+
+.rep-timeline-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.925rem;
+  color: var(--color-text-heading, #f9fafb);
+  margin-bottom: 0.25rem;
+}
+
+.rep-timeline-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--color-text-muted, #9ca3af);
+}

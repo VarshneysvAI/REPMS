@@ -1,0 +1,98 @@
+/* REPMS Component: Progress Meters & Gauges */
+
+.rep-progress {
+  height: 8px;
+  background-color: var(--color-bg-surface-hover, rgba(255, 255, 255, 0.06));
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.rep-progress--lg {
+  height: 14px;
+}
+
+.rep-progress--sm {
+  height: 5px;
+}
+
+.rep-progress-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  transition: width 0.6s ease-in-out;
+}
+
+.rep-progress-bar--emerald {
+  background: linear-gradient(90deg, #059669, #10b981);
+}
+
+.rep-progress-bar--warning {
+  background: linear-gradient(90deg, #d97706, #f59e0b);
+}
+
+.rep-progress-bar--danger {
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+}
+
+.rep-progress-bar--purple {
+  background: linear-gradient(90deg, #7c3aed, #a855f7);
+}
+
+/* Circular Gauge Scorecard Component */
+.rep-gauge-card {
+  background: var(--color-bg-surface, #1e293b);
+  border: 1px solid var(--color-border-card, rgba(255, 255, 255, 0.08));
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.rep-gauge-card:hover {
+  border-color: var(--color-brand-primary, #2563eb);
+}
+
+.rep-gauge-ring {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.rep-gauge-ring svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.rep-gauge-ring circle {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.rep-gauge-ring .bg-circle {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+.rep-gauge-ring .meter-circle {
+  stroke: #10b981;
+  stroke-dasharray: 251.2;
+  stroke-dashoffset: 25.12; /* default 90% */
+  transition: stroke-dashoffset 0.8s ease;
+}
+
+.rep-gauge-val {
+  position: absolute;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--color-text-heading, #f9fafb);
+}

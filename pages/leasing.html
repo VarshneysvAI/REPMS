@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REPMS — Leasing CRM & Vacancy Showcase</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body class="rep-body">
+  
+  <!-- TOP NAVBAR -->
+  <nav class="navbar navbar-expand-lg rep-navbar sticky-top">
+    <div class="container-fluid px-4">
+      <!-- Brand -->
+      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="../index.html">
+        <i class="bi bi-buildings-fill text-primary"></i> REPMS
+      </a>
+      
+      <!-- Mobile Toggles -->
+      <div class="d-flex align-items-center gap-3 d-lg-none">
+        <button class="btn btn-link text-muted p-0 border-0 theme-toggle-btn" aria-label="Toggle theme">
+          <i class="bi bi-moon-fill fs-5 theme-icon"></i>
+        </button>
+        <button class="navbar-toggler border-0 p-0 text-muted" type="button" data-bs-toggle="collapse" data-bs-target="#topNavbar">
+          <i class="bi bi-list fs-2"></i>
+        </button>
+      </div>
+
+      <!-- Collapsible Content -->
+      <div class="collapse navbar-collapse" id="topNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-1 mt-3 mt-lg-0">
+          <li class="nav-item"><a class="nav-link" href="../index.html"><i class="bi bi-speedometer2 me-1 d-none d-lg-inline"></i> Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="portfolio.html"><i class="bi bi-building me-1 d-none d-lg-inline"></i> Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="tenants.html"><i class="bi bi-people me-1 d-none d-lg-inline"></i> Tenants</a></li>
+          <li class="nav-item"><a class="nav-link" href="leases.html"><i class="bi bi-file-earmark-text me-1 d-none d-lg-inline"></i> Leases</a></li>
+          <li class="nav-item"><a class="nav-link" href="../dev3/financial.html"><i class="bi bi-cash-coin me-1 d-none d-lg-inline"></i> Financials</a></li>
+          <li class="nav-item"><a class="nav-link" href="../dev3/maintenance.html"><i class="bi bi-tools me-1 d-none d-lg-inline"></i> Maintenance</a></li>
+          <li class="nav-item"><a class="nav-link active" href="leasing.html"><i class="bi bi-key me-1 d-none d-lg-inline"></i> Leasing</a></li>
+          <li class="nav-item"><a class="nav-link" href="analytics.html"><i class="bi bi-graph-up-arrow me-1 d-none d-lg-inline"></i> Analytics</a></li>
+        </ul>
+
+        <!-- Right Side Utilities -->
+        <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-3 mt-3 mt-lg-0">
+          <!-- Search Box -->
+          <div class="d-flex align-items-center rounded px-3 py-1 search-wrapper">
+            <i class="bi bi-search text-muted me-2"></i>
+            <input type="text" class="bg-transparent border-0 w-100" placeholder="Search vacancies & leads..." style="outline: none; font-size: 0.875rem; color: var(--color-text-main);">
+            <kbd class="d-none d-md-block search-kbd">Ctrl K</kbd>
+          </div>
+
+          <!-- Desktop Theme & Notifications -->
+          <div class="d-none d-lg-flex align-items-center gap-3">
+            <button class="btn btn-link text-muted p-0 border-0 theme-toggle-btn" aria-label="Toggle theme">
+              <i class="bi bi-moon-fill fs-5 theme-icon"></i>
+            </button>
+            <div class="position-relative cursor-pointer text-muted">
+              <i class="bi bi-bell fs-5"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.55rem;">4</span>
+            </div>
+          </div>
+
+          <!-- User Dropdown -->
+          <div class="dropdown">
+            <button class="btn btn-link text-decoration-none p-0 d-flex align-items-center gap-2 w-100" type="button" data-bs-toggle="dropdown">
+              <img src="https://i.pravatar.cc/32?img=47" alt="User" class="rounded-circle" width="32" height="32">
+              <div class="text-start d-lg-none">
+                <div class="fw-bold lh-1" style="font-size: 0.9rem; color: var(--color-text-heading);">Sarah Jenkins</div>
+                <div class="text-muted" style="font-size: 0.75rem;">Senior Asset Director</div>
+              </div>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-lg-end shadow-sm border mt-2 mt-lg-3" style="border-color: var(--color-border-card) !important; background-color: var(--color-bg-surface);">
+              <li><div class="dropdown-item-text fw-bold d-none d-lg-block">Sarah Jenkins</div></li>
+              <li><div class="dropdown-item-text text-muted small d-none d-lg-block mb-2">Senior Asset Director</div></li>
+              <li><a class="dropdown-item" href="#">Profile Settings</a></li>
+              <li><a class="dropdown-item" href="#">Manage Access</a></li>
+              <li><hr class="dropdown-divider border-secondary"></li>
+              <li><a class="dropdown-item text-danger" href="../login.html">Sign Out</a></li>
+            </ul>
+          </div>
+
+          <!-- Quick Action -->
+          <button class="btn btn-primary btn-sm ms-lg-2 mt-2 mt-lg-0" data-bs-toggle="modal" data-bs-target="#scheduleTourModal">
+            <i class="bi bi-calendar-event me-1"></i> Schedule Tour
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN PAGE CONTENT -->
+  <main class="app-main page-leasing px-4 py-4">
+    
+    <!-- 1. Executive Header -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+      <div>
+        <h1 class="rep-page-title mb-1" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.75rem;">Leasing CRM & Vacancy Showcase</h1>
+        <p class="rep-page-subtitle text-muted mb-0" style="font-size: 0.9rem;">Track prospective tenant pipelines, floorplan availability, and tour dispatch telemetry.</p>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#addLeadModal">
+          <i class="bi bi-person-plus me-1"></i> Add Prospect
+        </button>
+        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#scheduleTourModal">
+          <i class="bi bi-calendar-plus me-1"></i> Book Tour
+        </button>
+      </div>
+    </div>
+
+    <!-- 2. KPI Metric Strip -->
+    <div class="row g-3 mb-4">
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="rep-metric-card">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="text-muted small fw-medium">Vacant Inventory</span>
+            <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">+4 this week</span>
+          </div>
+          <div class="rep-metric-val">28 Units</div>
+          <div class="text-muted small mt-1"><i class="bi bi-bounding-box me-1"></i> 45,200 total sqft available</div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="rep-metric-card">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="text-muted small fw-medium">Avg. Days on Market</span>
+            <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Industry Avg: 24d</span>
+          </div>
+          <div class="rep-metric-val">18.4 Days</div>
+          <div class="text-muted small mt-1"><i class="bi bi-clock-history me-1"></i> -3.2d improvement QoQ</div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="rep-metric-card">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="text-muted small fw-medium">Active Lead Funnel</span>
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill">12 Tours Scheduled</span>
+          </div>
+          <div class="rep-metric-val">64 Leads</div>
+          <div class="text-muted small mt-1"><i class="bi bi-funnel me-1"></i> 18 in application check</div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="rep-metric-card">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="text-muted small fw-medium">Lease-Up Target</span>
+            <span class="badge bg-warning-subtle text-warning border border-warning-subtle rounded-pill">Target: 75%</span>
+          </div>
+          <div class="rep-metric-val">68.5%</div>
+          <div class="text-muted small mt-1">
+            <div class="progress mt-2" style="height: 6px; background-color: rgba(255,255,255,0.08);">
+              <div class="progress-bar bg-warning" role="progressbar" style="width: 68.5%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Available Units Showcase Section -->
+    <div class="mb-5">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
+        <div>
+          <h4 class="fw-bold mb-0 text-heading"><i class="bi bi-grid-3x3-gap-fill text-primary me-2"></i> Available Vacancies Showcase</h4>
+          <p class="text-muted small mb-0">Browse vacant suites, floorplans, pricing, and dispatch tour guides.</p>
+        </div>
+        
+        <!-- Filter Controls -->
+        <div class="rep-filter-group">
+          <button class="rep-filter-btn active" onclick="filterUnits('all', this)">All Types</button>
+          <button class="rep-filter-btn" onclick="filterUnits('office', this)">Office</button>
+          <button class="rep-filter-btn" onclick="filterUnits('residential', this)">Residential</button>
+          <button class="rep-filter-btn" onclick="filterUnits('industrial', this)">Industrial</button>
+          <button class="rep-filter-btn" onclick="filterUnits('retail', this)">Retail</button>
+        </div>
+      </div>
+
+      <!-- Unit Cards Grid -->
+      <div class="row g-4" id="vacancyGrid">
+        
+        <!-- Card 1: Office -->
+        <div class="col-12 col-md-6 col-lg-4 unit-item" data-category="office">
+          <div class="unit-card">
+            <div class="unit-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Executive Office Suite">
+              <span class="unit-card-badge bg-success text-white"><i class="bi bi-check-circle me-1"></i> Available Now</span>
+            </div>
+            <div class="unit-card-body">
+              <div class="d-flex justify-content-between align-items-start mb-1">
+                <div class="unit-card-title">Suite 1204 — Grand Horizon</div>
+                <div class="unit-card-price">$48.50<span class="fs-6 text-muted font-normal">/sqft</span></div>
+              </div>
+              <p class="text-muted small mb-2"><i class="bi bi-geo-alt me-1"></i> Class-A Office Tower • Floor 12</p>
+              <div class="unit-card-specs">
+                <span><i class="bi bi-aspect-ratio me-1"></i> 3,450 sqft</span>
+                <span><i class="bi bi-people me-1"></i> 25–40 Desks</span>
+                <span><i class="bi bi-brightness-high me-1"></i> City View</span>
+              </div>
+              <div class="mt-auto pt-3 border-top border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+                <span class="text-muted small">Available Immediately</span>
+                <button class="btn btn-outline-primary btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#scheduleTourModal" onclick="setTourUnit('Suite 1204 — Grand Horizon Tower')">
+                  Book Tour
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Residential -->
+        <div class="col-12 col-md-6 col-lg-4 unit-item" data-category="residential">
+          <div class="unit-card">
+            <div class="unit-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" alt="Luxury Penthouse Apartment">
+              <span class="unit-card-badge bg-info text-white"><i class="bi bi-stars me-1"></i> Premium 2B/2B</span>
+            </div>
+            <div class="unit-card-body">
+              <div class="d-flex justify-content-between align-items-start mb-1">
+                <div class="unit-card-title">Penthouse 402 — Summit Ridge</div>
+                <div class="unit-card-price">$3,200<span class="fs-6 text-muted font-normal">/mo</span></div>
+              </div>
+              <p class="text-muted small mb-2"><i class="bi bi-geo-alt me-1"></i> Multi-Family Residential • Top Floor</p>
+              <div class="unit-card-specs">
+                <span><i class="bi bi-door-open me-1"></i> 2 Beds / 2 Baths</span>
+                <span><i class="bi bi-aspect-ratio me-1"></i> 1,280 sqft</span>
+                <span><i class="bi bi-balcony me-1"></i> Private Balcony</span>
+              </div>
+              <div class="mt-auto pt-3 border-top border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+                <span class="text-muted small">Ready for Move-In</span>
+                <button class="btn btn-outline-primary btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#scheduleTourModal" onclick="setTourUnit('Penthouse 402 — Summit Ridge')">
+                  Book Tour
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Industrial -->
+        <div class="col-12 col-md-6 col-lg-4 unit-item" data-category="industrial">
+          <div class="unit-card">
+            <div class="unit-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="High-Bay Warehouse">
+              <span class="unit-card-badge bg-warning text-dark"><i class="bi bi-truck me-1"></i> High Bay Logistics</span>
+            </div>
+            <div class="unit-card-body">
+              <div class="d-flex justify-content-between align-items-start mb-1">
+                <div class="unit-card-title">Bay 14 — Apex Logistics Park</div>
+                <div class="unit-card-price">$14.20<span class="fs-6 text-muted font-normal">/sqft</span></div>
+              </div>
+              <p class="text-muted small mb-2"><i class="bi bi-geo-alt me-1"></i> Industrial Logistics • Dock Loading</p>
+              <div class="unit-card-specs">
+                <span><i class="bi bi-bounding-box me-1"></i> 18,500 sqft</span>
+                <span><i class="bi bi-arrows-expand me-1"></i> 32 ft Clearance</span>
+                <span><i class="bi bi-truck me-1"></i> 4 Dock Doors</span>
+              </div>
+              <div class="mt-auto pt-3 border-top border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+                <span class="text-muted small">Available Oct 1</span>
+                <button class="btn btn-outline-primary btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#scheduleTourModal" onclick="setTourUnit('Bay 14 — Apex Logistics Park')">
+                  Book Tour
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Retail -->
+        <div class="col-12 col-md-6 col-lg-4 unit-item" data-category="retail">
+          <div class="unit-card">
+            <div class="unit-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Prime Corner Storefront">
+              <span class="unit-card-badge bg-primary text-white"><i class="bi bi-shop me-1"></i> High Footfall Corner</span>
+            </div>
+            <div class="unit-card-body">
+              <div class="d-flex justify-content-between align-items-start mb-1">
+                <div class="unit-card-title">Unit 108 — Riverside Retail</div>
+                <div class="unit-card-price">$38.00<span class="fs-6 text-muted font-normal">/sqft</span></div>
+              </div>
+              <p class="text-muted small mb-2"><i class="bi bi-geo-alt me-1"></i> Retail Strip Mall • Ground Level</p>
+              <div class="unit-card-specs">
+                <span><i class="bi bi-aspect-ratio me-1"></i> 2,100 sqft</span>
+                <span><i class="bi bi-eye me-1"></i> Double Glass Front</span>
+                <span><i class="bi bi-cup-hot me-1"></i> Grease Trap Ready</span>
+              </div>
+              <div class="mt-auto pt-3 border-top border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+                <span class="text-muted small">Turnover in Progress</span>
+                <button class="btn btn-outline-primary btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#scheduleTourModal" onclick="setTourUnit('Unit 108 — Riverside Retail Plaza')">
+                  Book Tour
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Office -->
+        <div class="col-12 col-md-6 col-lg-4 unit-item" data-category="office">
+          <div class="unit-card">
+            <div class="unit-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=600&q=80" alt="Open Plan Tech Loft">
+              <span class="unit-card-badge bg-success text-white"><i class="bi bi-check-circle me-1"></i> Available Now</span>
+            </div>
+            <div class="unit-card-body">
+              <div class="d-flex justify-content-between align-items-start mb-1">
+                <div class="unit-card-title">Suite 705 — Pinnacle Loft</div>
+                <div class="unit-card-price">$42.00<span class="fs-6 text-muted font-normal">/sqft</span></div>
+              </div>
+              <p class="text-muted small mb-2"><i class="bi bi-geo-alt me-1"></i> Tech Loft Office • Floor 7</p>
+              <div class="unit-card-specs">
+                <span><i class="bi bi-aspect-ratio me-1"></i> 4,200 sqft</span>
+                <span><i class="bi bi-wifi me-1"></i> Fiber Optic Ready</span>
+                <span><i class="bi bi-building-up me-1"></i> High Ceilings</span>
+              </div>
+              <div class="mt-auto pt-3 border-top border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+                <span class="text-muted small">Available Immediately</span>
+                <button class="btn btn-outline-primary btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#scheduleTourModal" onclick="setTourUnit('Suite 705 — Pinnacle Tech Center')">
+                  Book Tour
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6: Retail -->
+        <div class="col-12 col-md-6 col-lg-4 unit-item" data-category="retail">
+          <div class="unit-card">
+            <div class="unit-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80" alt="Anchor Retail Location">
+              <span class="unit-card-badge bg-secondary text-white"><i class="bi bi-shield-check me-1"></i> Anchor Location</span>
+            </div>
+            <div class="unit-card-body">
+              <div class="d-flex justify-content-between align-items-start mb-1">
+                <div class="unit-card-title">Unit 210 — Metro Center Mall</div>
+                <div class="unit-card-price">$32.50<span class="fs-6 text-muted font-normal">/sqft</span></div>
+              </div>
+              <p class="text-muted small mb-2"><i class="bi bi-geo-alt me-1"></i> Shopping Mall Anchor • Level 2</p>
+              <div class="unit-card-specs">
+                <span><i class="bi bi-aspect-ratio me-1"></i> 8,900 sqft</span>
+                <span><i class="bi bi-box-seam me-1"></i> Rear Loading Bay</span>
+                <span><i class="bi bi-car-front me-1"></i> Direct Parking</span>
+              </div>
+              <div class="mt-auto pt-3 border-top border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+                <span class="text-muted small">Immediate Occupancy</span>
+                <button class="btn btn-outline-primary btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#scheduleTourModal" onclick="setTourUnit('Unit 210 — Metro Center Mall')">
+                  Book Tour
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 4. Prospective Tenant CRM Funnel Kanban -->
+    <div>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h4 class="fw-bold mb-0 text-heading"><i class="bi bi-funnel-fill text-info me-2"></i> Prospective Tenant CRM Pipeline</h4>
+          <p class="text-muted small mb-0">Track leads from initial inquiry through credit screening and final lease execution.</p>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addLeadModal">
+          <i class="bi bi-plus-lg me-1"></i> New Lead
+        </button>
+      </div>
+
+      <div class="crm-kanban-wrapper">
+        
+        <!-- Column 1: New Inquiry -->
+        <div class="crm-column">
+          <div class="crm-column-header">
+            <span class="crm-column-title"><i class="bi bi-envelope-open text-primary me-1"></i> 1. New Inquiry</span>
+            <span class="badge bg-secondary rounded-pill">3</span>
+          </div>
+
+          <div class="crm-card">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="crm-applicant-name">Apex Tech Solutions</span>
+              <span class="badge bg-primary-subtle text-primary border border-primary-subtle" style="font-size:0.65rem;">Office</span>
+            </div>
+            <div class="crm-target-unit mb-2"><i class="bi bi-building me-1"></i> Suite 1204 (3,450 sqft)</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="crm-metric-badge">Ratio: 4.2x</span>
+              <span class="text-muted small" style="font-size: 0.725rem;"><i class="bi bi-globe me-1"></i> CoStar Lead</span>
+            </div>
+          </div>
+
+          <div class="crm-card">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="crm-applicant-name">GreenBite Artisanal Cafe</span>
+              <span class="badge bg-success-subtle text-success border border-success-subtle" style="font-size:0.65rem;">Retail</span>
+            </div>
+            <div class="crm-target-unit mb-2"><i class="bi bi-shop me-1"></i> Unit 108 (2,100 sqft)</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="crm-metric-badge">Ratio: 3.8x</span>
+              <span class="text-muted small" style="font-size: 0.725rem;"><i class="bi bi-award me-1"></i> Direct Broker</span>
+            </div>
+          </div>
+
+          <div class="crm-card">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="crm-applicant-name">Elena & David Rostova</span>
+              <span class="badge bg-info-subtle text-info border border-info-subtle" style="font-size:0.65rem;">Residential</span>
+            </div>
+            <div class="crm-target-unit mb-2"><i class="bi bi-house me-1"></i> Penthouse 402</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="crm-metric-badge">Ratio: 5.1x</span>
+              <span class="text-muted small" style="font-size: 0.725rem;"><i class="bi bi-phone me-1"></i> Zillow Lead</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Tour Scheduled -->
+        <div class="crm-column">
+          <div class="crm-column-header">
+            <span class="crm-column-title"><i class="bi bi-calendar-check text-info me-1"></i> 2. Tour Booked</span>
+            <span class="badge bg-secondary rounded-pill">2</span>
+          </div>
+
+          <div class="crm-card">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="crm-applicant-name">Horizon Logistics Corp</span>
+              <span class="badge bg-warning-subtle text-warning border border-warning-subtle" style="font-size:0.65rem;">Industrial</span>
+            </div>
+            <div class="crm-target-unit mb-2"><i class="bi bi-truck me-1"></i> Bay 14 (18,500 sqft)</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-info small fw-bold"><i class="bi bi-clock me-1"></i> Tomorrow, 2 PM</span>
+              <span class="badge bg-outline-secondary" style="font-size: 0.7rem;">In-Person</span>
+            </div>
+          </div>
+
+          <div class="crm-card">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="crm-applicant-name">Dr. Aris Thorne (Clinic)</span>
+              <span class="badge bg-primary-subtle text-primary border border-primary-subtle" style="font-size:0.65rem;">Office</span>
+            </div>
+            <div class="crm-target-unit mb-2"><i class="bi bi-building me-1"></i> Suite 705 (4,200 sqft)</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-info small fw-bold"><i class="bi bi-clock me-1"></i> Sep 25, 10 AM</span>
+              <span class="badge bg-outline-secondary" style="font-size: 0.7rem;">3D Virtual</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3: Application Submitted -->
+        <div class="crm-column">
+          <div class="crm-column-header">
+            <span class="crm-column-title"><i class="bi bi-file-earmark-text text-warning me-1"></i> 3. Application</span>
+            <span class="badge bg-secondary rounded-pill">2</span>
+          </div>
+
+          <div class="crm-card">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="crm-applicant-name">Nexus Software Systems</span>
+              <span class="badge bg-primary-subtle text-primary border border-primary-subtle" style="font-size:0.65rem;">Office</span>
+            </div>
+            <div class="crm-target-unit mb-2"><i class="bi bi-building me-1"></i> Suite 1204</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="crm-metric-badge">Deposit Paid</span>
+              <span class="text-muted small" style="font-size: 0.725rem;">Submitted Sep 22</span>
+            </div>
+          </div>
+
+          <div class="crm-card">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="crm-applicant-name">Urban Style Apparel</span>
+              <span class="badge bg-success-subtle text-success border border-success-subtle" style="font-size:0.65rem;">Retail</span>
+            </div>
+            <div class="crm-target-unit mb-2"><i class="bi bi-shop me-1"></i> Unit 210</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="crm-metric-badge">Reviewing Financials</span>
+              <span class="text-muted small" style="font-size: 0.725rem;">Submitted Sep 21</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 4: Credit & Background -->
+        <div class="crm-column">
+          <div class="crm-column-header">
+            <span class="crm-column-title"><i class="bi bi-shield-check text-purple me-1" style="color: #a855f7;"></i> 4. Credit Check</span>
+            <span class="badge bg-secondary rounded-pill">2</span>
+          </div>
+
+          <div class="crm-card">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="crm-applicant-name">Vantage Advisory Group</span>
+              <span class="badge bg-primary-subtle text-primary border border-primary-subtle" style="font-size:0.65rem;">Office</span>
+            </div>
+            <div class="crm-target-unit mb-2"><i class="bi bi-building me-1"></i> Suite 1204</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="badge bg-success text-white" style="font-size: 0.7rem;"><i class="bi bi-check2 me-1"></i> Credit Score: 785</span>
+              <span class="text-muted small" style="font-size: 0.725rem;">Passed</span>
+            </div>
+          </div>
+
+          <div class="crm-card">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="crm-applicant-name">Apex BioTech Labs</span>
+              <span class="badge bg-warning-subtle text-warning border border-warning-subtle" style="font-size:0.65rem;">Industrial</span>
+            </div>
+            <div class="crm-target-unit mb-2"><i class="bi bi-truck me-1"></i> Bay 14</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="badge bg-success text-white" style="font-size: 0.7rem;"><i class="bi bi-check2 me-1"></i> Escrow Verified</span>
+              <span class="text-muted small" style="font-size: 0.725rem;">Passed</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 5: Lease Execution -->
+        <div class="crm-column">
+          <div class="crm-column-header">
+            <span class="crm-column-title"><i class="bi bi-pen-fill text-success me-1"></i> 5. Lease Sent</span>
+            <span class="badge bg-success rounded-pill">1</span>
+          </div>
+
+          <div class="crm-card border-success border-opacity-50">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="crm-applicant-name">Solaria Energy Systems</span>
+              <span class="badge bg-primary-subtle text-primary border border-primary-subtle" style="font-size:0.65rem;">Office</span>
+            </div>
+            <div class="crm-target-unit mb-2"><i class="bi bi-building me-1"></i> Suite 705 (4,200 sqft)</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="badge bg-success-subtle text-success border border-success-subtle" style="font-size:0.7rem;">Out for Signature</span>
+              <span class="text-muted small" style="font-size: 0.725rem;">Due Sep 24</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL 1: SCHEDULE TOUR MODAL -->
+  <div class="modal fade" id="scheduleTourModal" tabindex="-1" aria-labelledby="scheduleTourModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: var(--color-bg-surface); border-color: var(--color-border-card);">
+        <div class="modal-header border-bottom border-secondary border-opacity-25">
+          <h5 class="modal-title fw-bold" id="scheduleTourModalLabel"><i class="bi bi-calendar-event text-primary me-2"></i> Schedule Property Tour</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="tourForm" onsubmit="handleTourSubmit(event)">
+            <div class="mb-3">
+              <label class="form-label text-muted small fw-medium">Target Vacancy / Property</label>
+              <input type="text" class="form-control bg-dark border-secondary text-white" id="tourUnitInput" value="Suite 1204 — Grand Horizon Tower" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-muted small fw-medium">Prospective Tenant / Company</label>
+              <input type="text" class="form-control bg-dark border-secondary text-white" placeholder="e.g. Acme Corporation or John Doe" required>
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label text-muted small fw-medium">Tour Date</label>
+                <input type="date" class="form-control bg-dark border-secondary text-white" required>
+              </div>
+              <div class="col-6">
+                <label class="form-label text-muted small fw-medium">Tour Time</label>
+                <input type="time" class="form-control bg-dark border-secondary text-white" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-muted small fw-medium">Tour Format</label>
+              <select class="form-select bg-dark border-secondary text-white">
+                <option value="in-person" selected>In-Person Guided Tour</option>
+                <option value="virtual-3d">3D Virtual Matterport Tour</option>
+                <option value="self-guided">Self-Guided Smart Keypad Access</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-muted small fw-medium">Assigned Leasing Agent</label>
+              <select class="form-select bg-dark border-secondary text-white">
+                <option selected>Sarah Jenkins (Senior Director)</option>
+                <option>Marcus Vance (Commercial Agent)</option>
+                <option>Elena Vance (Residential Agent)</option>
+              </select>
+            </div>
+            <div class="d-flex justify-content-end gap-2 pt-2 border-top border-secondary border-opacity-25">
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary btn-sm px-4">Confirm Schedule</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: ADD PROSPECT MODAL -->
+  <div class="modal fade" id="addLeadModal" tabindex="-1" aria-labelledby="addLeadModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: var(--color-bg-surface); border-color: var(--color-border-card);">
+        <div class="modal-header border-bottom border-secondary border-opacity-25">
+          <h5 class="modal-title fw-bold" id="addLeadModalLabel"><i class="bi bi-person-plus text-success me-2"></i> Add New Prospective Lead</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form onsubmit="handleAddLeadSubmit(event)">
+            <div class="mb-3">
+              <label class="form-label text-muted small fw-medium">Company or Applicant Name</label>
+              <input type="text" class="form-control bg-dark border-secondary text-white" placeholder="e.g. Apex Global Corp" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-muted small fw-medium">Asset Class Interest</label>
+              <select class="form-select bg-dark border-secondary text-white">
+                <option value="office">Class-A Commercial Office</option>
+                <option value="residential">Residential Multi-Family</option>
+                <option value="industrial">Industrial Logistics</option>
+                <option value="retail">Retail Strip Mall</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-muted small fw-medium">Estimated Monthly Income / Revenue Ratio</label>
+              <input type="text" class="form-control bg-dark border-secondary text-white" placeholder="e.g. 4.5x Rent Coverage">
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-muted small fw-medium">Lead Source</label>
+              <select class="form-select bg-dark border-secondary text-white">
+                <option>Direct Broker Referral</option>
+                <option>CoStar Commercial Listing</option>
+                <option>Zillow Marketplace</option>
+                <option>Company Website</option>
+              </select>
+            </div>
+            <div class="d-flex justify-content-end gap-2 pt-2 border-top border-secondary border-opacity-25">
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-success btn-sm px-4">Create Lead</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS & Custom Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Theme Switcher Management
+    const getStoredTheme = () => localStorage.getItem('theme') || 'light';
+    const setStoredTheme = theme => localStorage.setItem('theme', theme);
+
+    const setTheme = theme => {
+      document.documentElement.setAttribute('data-bs-theme', theme);
+      const icons = document.querySelectorAll('.theme-icon');
+      icons.forEach(icon => {
+        if (theme === 'dark') {
+          icon.classList.remove('bi-moon-fill');
+          icon.classList.add('bi-sun-fill');
+        } else {
+          icon.classList.remove('bi-sun-fill');
+          icon.classList.add('bi-moon-fill');
+        }
+      });
+    }
+
+    setTheme(getStoredTheme());
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      setTheme(newTheme);
+      setStoredTheme(newTheme);
+    }
+
+    document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', toggleTheme);
+    });
+
+    // Vacancy Filter Functionality
+    function filterUnits(category, btn) {
+      document.querySelectorAll('.rep-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const items = document.querySelectorAll('.unit-item');
+      items.forEach(item => {
+        if (category === 'all' || item.getAttribute('data-category') === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Modal Helper
+    function setTourUnit(unitName) {
+      document.getElementById('tourUnitInput').value = unitName;
+    }
+
+    function handleTourSubmit(e) {
+      e.preventDefault();
+      alert('Tour scheduled successfully! Notification dispatched to agent.');
+      bootstrap.Modal.getInstance(document.getElementById('scheduleTourModal')).hide();
+    }
+
+    function handleAddLeadSubmit(e) {
+      e.preventDefault();
+      alert('New prospective lead added to CRM pipeline!');
+      bootstrap.Modal.getInstance(document.getElementById('addLeadModal')).hide();
+    }
+  </script>
+</body>
+</html>
