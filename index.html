@@ -55,9 +55,12 @@
             <button class="btn btn-link text-muted p-0 border-0 theme-toggle-btn" aria-label="Toggle theme">
               <i class="bi bi-moon-fill fs-5 theme-icon"></i>
             </button>
-            <div class="position-relative cursor-pointer text-muted">
-              <i class="bi bi-bell fs-5"></i>
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.55rem;">3</span>
+            <div class="dropdown">
+              <button class="btn btn-link text-muted p-0 border-0 position-relative" type="button" data-bs-toggle="dropdown" aria-label="Notifications">
+                <i class="bi bi-bell fs-5"></i>
+                <span id="notifBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.55rem;">3</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow-sm border mt-2" id="notifMenu" style="min-width: 260px;"></ul>
             </div>
           </div>
 
@@ -66,17 +69,16 @@
             <button class="btn btn-link text-decoration-none p-0 d-flex align-items-center gap-2 w-100" type="button" data-bs-toggle="dropdown">
               <img src="https://i.pravatar.cc/32?img=47" alt="User" class="rounded-circle" width="32" height="32">
               <div class="text-start d-lg-none">
-                <div class="fw-bold lh-1" style="font-size: 0.9rem; color: var(--color-text-heading);">Sarah Jenkins</div>
-                <div class="text-muted" style="font-size: 0.75rem;">Senior Asset Director</div>
+                <div class="fw-bold lh-1 user-name-label" style="font-size: 0.9rem; color: var(--color-text-heading);">Sarah Jenkins</div>
+                <div class="text-muted user-role-label" style="font-size: 0.75rem;">Senior Asset Director</div>
               </div>
             </button>
             <ul class="dropdown-menu dropdown-menu-lg-end shadow-sm border mt-2 mt-lg-3" style="border-color: var(--color-border-card) !important; background-color: var(--color-bg-surface);">
-              <li><div class="dropdown-item-text fw-bold d-none d-lg-block">Sarah Jenkins</div></li>
-              <li><div class="dropdown-item-text text-muted small d-none d-lg-block mb-2">Senior Asset Director</div></li>
-              <li><a class="dropdown-item" href="#">Profile Settings</a></li>
-              <li><a class="dropdown-item" href="#">Manage Access</a></li>
+              <li><div class="dropdown-item-text fw-bold d-none d-lg-block user-name-label">Sarah Jenkins</div></li>
+              <li><div class="dropdown-item-text text-muted small d-none d-lg-block mb-2 user-role-label">Senior Asset Director</div></li>
+              <li><a class="dropdown-item" href="pages/portfolio.html">Portfolio Console</a></li>
               <li><hr class="dropdown-divider border-secondary"></li>
-              <li><a class="dropdown-item text-danger" href="login.html">Sign Out</a></li>
+              <li><a class="dropdown-item text-danger signout-btn" href="login.html">Sign Out</a></li>
             </ul>
           </div>
 
@@ -96,10 +98,10 @@
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
       <div>
         <h1 class="rep-page-title">Executive Command Center</h1>
-        <p class="rep-page-subtitle">Real-time telemetry across 42 properties and 1,420 units</p>
+        <p class="rep-page-subtitle" id="dashSubtitle">Real-time telemetry across 4 flagship properties and 226 units</p>
       </div>
       <div class="d-flex gap-2">
-        <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-download me-1"></i> Export Report</button>
+        <button class="btn btn-outline-secondary btn-sm" id="exportReportBtn"><i class="bi bi-download me-1"></i> Export Report</button>
       </div>
     </div>
 
@@ -112,7 +114,7 @@
             <span class="rep-kpi__label">Portfolio Value</span>
             <span class="text-primary"><i class="bi bi-buildings"></i></span>
           </div>
-          <div class="rep-kpi__value font-mono">$142.8M</div>
+          <div class="rep-kpi__value font-mono" id="kpiPortfolioValue">$142.8M</div>
           <div class="rep-kpi__trend text-success"><i class="bi bi-arrow-up-right"></i> +4.2% YoY</div>
         </div>
       </div>
@@ -123,7 +125,7 @@
             <span class="rep-kpi__label">Occupancy Rate</span>
             <span class="text-success"><i class="bi bi-pie-chart"></i></span>
           </div>
-          <div class="rep-kpi__value font-mono">94.2%</div>
+          <div class="rep-kpi__value font-mono" id="kpiOccupancy">95.5%</div>
           <div class="rep-kpi__trend text-success"><i class="bi bi-arrow-up-right"></i> +1.1% vs Last Qtr</div>
         </div>
       </div>
@@ -134,7 +136,7 @@
             <span class="rep-kpi__label">Monthly Rev</span>
             <span class="text-info"><i class="bi bi-currency-dollar"></i></span>
           </div>
-          <div class="rep-kpi__value font-mono">$1.2M</div>
+          <div class="rep-kpi__value font-mono" id="kpiMonthlyRev">$1.2M</div>
           <div class="rep-kpi__trend text-success"><i class="bi bi-arrow-up-right"></i> +2.5% MoM</div>
         </div>
       </div>
@@ -145,7 +147,7 @@
             <span class="rep-kpi__label">NOI (YTD)</span>
             <span class="text-warning"><i class="bi bi-graph-up-arrow"></i></span>
           </div>
-          <div class="rep-kpi__value font-mono">$8.4M</div>
+          <div class="rep-kpi__value font-mono" id="kpiNoi">$8.4M</div>
           <div class="rep-kpi__trend text-success"><i class="bi bi-arrow-up-right"></i> +5.8% YoY</div>
         </div>
       </div>
@@ -156,8 +158,8 @@
             <span class="rep-kpi__label">Open Issues</span>
             <span class="text-danger"><i class="bi bi-exclamation-triangle"></i></span>
           </div>
-          <div class="rep-kpi__value font-mono">24</div>
-          <div class="rep-kpi__trend text-danger"><i class="bi bi-arrow-up-right"></i> 3 Critical</div>
+          <div class="rep-kpi__value font-mono" id="kpiOpenIssues">3</div>
+          <div class="rep-kpi__trend text-danger"><i class="bi bi-arrow-up-right"></i> <span id="kpiOpenIssuesTrend">2 Critical</span></div>
         </div>
       </div>
     </div>
@@ -169,37 +171,9 @@
         <div class="rep-card p-4 mb-4">
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="rep-card__title mb-0">Asset Class Occupancy</h3>
-            <button class="btn btn-sm btn-link text-decoration-none text-muted">View Details <i class="bi bi-chevron-right"></i></button>
+            <a href="pages/portfolio.html" class="btn btn-sm btn-link text-decoration-none text-muted">View Details <i class="bi bi-chevron-right"></i></a>
           </div>
-          <div class="d-flex flex-column gap-3">
-            <div>
-              <div class="d-flex justify-content-between small mb-1">
-                <span class="fw-medium">Residential (18 Properties)</span>
-                <span class="font-mono text-muted">96%</span>
-              </div>
-              <div class="progress" style="height: 6px; background-color: var(--color-bg-surface-hover);">
-                <div class="progress-bar bg-primary" style="width: 96%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="d-flex justify-content-between small mb-1">
-                <span class="fw-medium">Commercial (10 Properties)</span>
-                <span class="font-mono text-muted">92%</span>
-              </div>
-              <div class="progress" style="height: 6px; background-color: var(--color-bg-surface-hover);">
-                <div class="progress-bar bg-success" style="width: 92%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="d-flex justify-content-between small mb-1">
-                <span class="fw-medium">Retail (6 Properties)</span>
-                <span class="font-mono text-muted">88%</span>
-              </div>
-              <div class="progress" style="height: 6px; background-color: var(--color-bg-surface-hover);">
-                <div class="progress-bar bg-warning" style="width: 88%"></div>
-              </div>
-            </div>
-          </div>
+          <div class="d-flex flex-column gap-3" id="assetOccupancyList"></div>
         </div>
         
         <div class="rep-card p-0 overflow-hidden">
@@ -216,26 +190,7 @@
                   <th class="py-3 px-4 border-bottom-0 fw-medium text-end">TIME</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td class="px-4"><i class="bi bi-building text-primary me-2"></i> <span class="fw-medium">Skyline Tower</span></td>
-                  <td>Lease Renewal: Apex Global</td>
-                  <td><span class="badge bg-success-subtle text-success border border-success">Completed</span></td>
-                  <td class="text-end text-muted small px-4">10m ago</td>
-                </tr>
-                <tr>
-                  <td class="px-4"><i class="bi bi-house text-info me-2"></i> <span class="fw-medium">Oakwood Res</span></td>
-                  <td>HVAC Failure (Unit 402)</td>
-                  <td><span class="badge bg-danger-subtle text-danger border border-danger">Urgent</span></td>
-                  <td class="text-end text-muted small px-4">1h ago</td>
-                </tr>
-                <tr>
-                  <td class="px-4"><i class="bi bi-shop text-warning me-2"></i> <span class="fw-medium">Metro Retail</span></td>
-                  <td>Rent Payment Overdue</td>
-                  <td><span class="badge bg-warning-subtle text-warning border border-warning">Pending</span></td>
-                  <td class="text-end text-muted small px-4">3h ago</td>
-                </tr>
-              </tbody>
+              <tbody id="recentActivityBody"></tbody>
             </table>
           </div>
         </div>
@@ -247,43 +202,24 @@
           <h3 class="rep-card__title text-danger d-flex align-items-center gap-2 mb-4">
             <i class="bi bi-exclamation-octagon-fill"></i> Urgent Escalations
           </h3>
-          <div class="d-flex flex-column gap-3">
-            <div class="d-flex gap-3 align-items-start p-3 rounded" style="background-color: var(--status-delinquent-bg);">
-              <div class="text-danger mt-1">
-                <i class="bi bi-water fs-5"></i>
-              </div>
-              <div>
-                <div class="fw-bold text-danger mb-1">Water Leak (Major)</div>
-                <div class="text-muted small">Oakwood Res - Tower B</div>
-              </div>
-            </div>
-            <div class="d-flex gap-3 align-items-start p-3 rounded" style="background-color: var(--status-renovating-bg);">
-              <div class="text-warning mt-1">
-                <i class="bi bi-file-earmark-text fs-5"></i>
-              </div>
-              <div>
-                <div class="fw-bold text-warning mb-1">2 Major Leases Expiring</div>
-                <div class="text-muted small">Skyline Tower - <span class="fw-medium">Next 30 Days</span></div>
-              </div>
-            </div>
-          </div>
+          <div class="d-flex flex-column gap-3" id="urgentEscalationsList"></div>
         </div>
         
         <div class="rep-card p-4">
           <h3 class="rep-card__title">Quick Navigators</h3>
           <div class="d-grid gap-2">
-            <button class="btn btn-outline-secondary text-start d-flex justify-content-between align-items-center py-2">
+            <a href="dev3/financial.html" class="btn btn-outline-secondary text-start d-flex justify-content-between align-items-center py-2">
               <span class="fw-medium"><i class="bi bi-journal-text me-2 text-primary"></i> Master Rent Roll</span>
               <i class="bi bi-arrow-right text-muted"></i>
-            </button>
-            <button class="btn btn-outline-secondary text-start d-flex justify-content-between align-items-center py-2">
+            </a>
+            <a href="dev3/maintenance.html" class="btn btn-outline-secondary text-start d-flex justify-content-between align-items-center py-2">
               <span class="fw-medium"><i class="bi bi-tools me-2 text-info"></i> Work Order Board</span>
               <i class="bi bi-arrow-right text-muted"></i>
-            </button>
-            <button class="btn btn-outline-secondary text-start d-flex justify-content-between align-items-center py-2">
+            </a>
+            <a href="pages/leases.html" class="btn btn-outline-secondary text-start d-flex justify-content-between align-items-center py-2">
               <span class="fw-medium"><i class="bi bi-file-earmark-medical me-2 text-success"></i> Lease Agreements</span>
               <i class="bi bi-arrow-right text-muted"></i>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -304,56 +240,40 @@
     </div>
     <div class="offcanvas-body">
       <div class="list-group list-group-flush mb-4">
-        <button class="list-group-item list-group-item-action bg-transparent py-3">
+        <button class="list-group-item list-group-item-action bg-transparent py-3" data-quick-action="workOrder">
           <i class="bi bi-wrench-adjustable me-2 text-primary"></i> Create Work Order
         </button>
-        <button class="list-group-item list-group-item-action bg-transparent py-3">
+        <button class="list-group-item list-group-item-action bg-transparent py-3" data-quick-action="payment">
           <i class="bi bi-cash-stack me-2 text-success"></i> Log Manual Payment
         </button>
-        <button class="list-group-item list-group-item-action bg-transparent py-3">
+        <button class="list-group-item list-group-item-action bg-transparent py-3" data-quick-action="tenant">
           <i class="bi bi-person-plus me-2 text-info"></i> Add New Tenant
         </button>
-        <button class="list-group-item list-group-item-action bg-transparent py-3">
+        <button class="list-group-item list-group-item-action bg-transparent py-3" data-quick-action="notice">
           <i class="bi bi-file-earmark-pdf me-2 text-danger"></i> Generate Notice
         </button>
+      </div>
+      <div id="quickActionFormBox" class="d-none border-top pt-3">
+        <h6 class="fw-bold mb-3" id="qaFormTitle">Quick Action</h6>
+        <form id="quickActionForm" class="d-flex flex-column gap-3">
+          <div>
+            <label class="form-label small text-muted" for="qaPropertySelect">Property</label>
+            <select id="qaPropertySelect" class="form-select form-select-sm"></select>
+          </div>
+          <div>
+            <label class="form-label small text-muted" id="qaInputLabel" for="qaInputValue">Details</label>
+            <input type="text" id="qaInputValue" class="form-control form-control-sm" required>
+          </div>
+          <button type="submit" id="qaSubmitBtn" class="btn btn-primary btn-sm">Submit</button>
+        </form>
       </div>
     </div>
   </div>
 
-  <!-- Bootstrap JS & Custom Scripts -->
+  <!-- Bootstrap JS & Dev 1 Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Theme Management
-    const getStoredTheme = () => localStorage.getItem('theme') || 'light';
-    const setStoredTheme = theme => localStorage.setItem('theme', theme);
-
-    const setTheme = theme => {
-      document.documentElement.setAttribute('data-bs-theme', theme);
-      const icons = document.querySelectorAll('.theme-icon');
-      icons.forEach(icon => {
-        if (theme === 'dark') {
-          icon.classList.remove('bi-moon-fill');
-          icon.classList.add('bi-sun-fill');
-        } else {
-          icon.classList.remove('bi-sun-fill');
-          icon.classList.add('bi-moon-fill');
-        }
-      });
-    }
-
-    setTheme(getStoredTheme());
-
-    function toggleTheme() {
-      const currentTheme = document.documentElement.getAttribute('data-bs-theme');
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      setTheme(newTheme);
-      setStoredTheme(newTheme);
-    }
-
-    // Attach to buttons
-    document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
-      btn.addEventListener('click', toggleTheme);
-    });
-  </script>
+  <script src="./assets/js/store.js"></script>
+  <script src="./assets/js/shell.js"></script>
+  <script src="./assets/js/dashboard.js"></script>
 </body>
 </html>
