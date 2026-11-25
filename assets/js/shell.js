@@ -78,30 +78,25 @@
     btn.addEventListener('click', () => applyTheme(document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark'))
   );
 
-  // 3. Login form & direct Dashboard entry (Sign Out redirects until Sign In)
+  // 3. Login form & Session Auth Guard
   const loginForm = byId('loginForm');
   if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const email = byId('loginEmail').value.trim();
       const pass = byId('loginPassword').value;
-      if (!email.includes('@') || pass.length < 4) return toast('Enter a valid email and password (min 4 chars).', 'danger');
+      if (!email.includes('@') || !pass) return toast('Enter a valid email and any password.', 'danger');
       const name = email.split('@')[0].replace(/[._-]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-      REPMS_STORE.auth.login({ name, email, role: 'Senior Asset Director' });
-      location.href = 'index.html';
+      REPMS_STORE.auth.login({ name, email, role: 'Senior Asset Director' }, Boolean(byId('rememberMe')?.checked));
+      location.replace('index.html');
     });
     return;
   }
 
-  if (REPMS_STORE.auth.isSignedOut() && !location.pathname.endsWith('login.html')) { location.href = BASE + 'login.html'; return; }
   const user = REPMS_STORE.auth.getUser();
+  if (!user) { location.replace(BASE + 'login.html'); return; }
   document.querySelectorAll('.user-name-label').forEach(el => { el.textContent = user.name; });
   document.querySelectorAll('.user-role-label').forEach(el => { el.textContent = user.role; });
-  document.querySelectorAll('.signout-btn').forEach(btn => btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    REPMS_STORE.auth.logout();
-    location.href = BASE + 'login.html';
-  }));
 
   // 4. Global Search (Ctrl+K)
   const searchInput = document.querySelector('.search-wrapper input');

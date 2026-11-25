@@ -1,7 +1,23 @@
-// REPMS Data Store: fetches db.json, persists mutations in localStorage, exposes window.REPMS_STORE & window.repms.
+// REPMS Data Store: enforces session auth, fetches db.json, persists mutations in localStorage.
 const DB_KEY = 'REPMS_DATABASE_V1';
-const USER_KEY = 'REPMS_USER';
+const USER_KEY = 'REPMS_SESSION_V2';
 const BASE_PATH = /\/(pages|dev3)\//.test(location.pathname) ? '../' : './';
+const IS_LOGIN = /\/login(\.html)?\/?$/.test(location.pathname);
+
+function getAuthUser() {
+  try { return JSON.parse(sessionStorage.getItem(USER_KEY) || localStorage.getItem(USER_KEY) || 'null'); }
+  catch { return null; }
+}
+
+function enforceAuth() {
+  if (IS_LOGIN || getAuthUser()) return true;
+  document.documentElement.style.display = 'none';
+  location.replace(BASE_PATH + 'login.html');
+  return false;
+}
+
+const AUTH_OK = enforceAuth();
+window.addEventListener('pageshow', (e) => { if (e.persisted) enforceAuth(); });
 
 const emptyDB = () => ({
   properties: [], recentActivity: [], escalations: [], tenants: [], leases: [],
@@ -56,6 +72,7 @@ window.repms = {
     URL.revokeObjectURL(url);
   },
   toast(message, type = 'success') {
+    if (!document.body || !window.bootstrap) return;
     let box = document.getElementById('repmsToastBox');
     if (!box) {
       box = document.createElement('div');
@@ -138,11 +155,32 @@ window.REPMS_STORE = {
   },
   analytics: { getESG: () => readDB().esg },
   auth: {
-    getUser: () => JSON.parse(localStorage.getItem(USER_KEY) || 'null') || { name: 'Sarah Jenkins', email: 'sarah.jenkins@repms.io', role: 'Senior Asset Director' },
-    login: (user) => { localStorage.setItem(USER_KEY, JSON.stringify(user)); sessionStorage.removeItem('REPMS_SIGNED_OUT'); },
-    logout: () => { localStorage.removeItem(USER_KEY); sessionStorage.setItem('REPMS_SIGNED_OUT', '1'); },
-    isSignedOut: () => sessionStorage.getItem('REPMS_SIGNED_OUT') === '1'
+    getUser: getAuthUser,
+    login(user, remember = false) {
+      localStorage.removeItem(USER_KEY);
+      sessionStorage.removeItem(USER_KEY);
+      (remember ? localStorage : sessionStorage).setItem(USER_KEY, JSON.stringify(user));
+    },
+    logout() {
+      localStorage.removeItem(USER_KEY);
+      sessionStorage.removeItem(USER_KEY);
+    }
   }
 };
 
-window.REPMS_STORE.ready = fetchDatabase();
+document.addEventListener('DOMContentLoaded', () => {
+  const user = getAuthUser();
+  if (!user) return;
+  document.querySelectorAll('.user-name-label').forEach(el => { el.textContent = user.name; });
+  document.querySelectorAll('.user-role-label').forEach(el => { el.textContent = user.role; });
+});
+
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('.signout-btn, a[href$="login.html"]');
+  if (!link) return;
+  e.preventDefault();
+  window.REPMS_STORE.auth.logout();
+  location.replace(BASE_PATH + 'login.html');
+});
+
+window.REPMS_STORE.ready = (AUTH_OK && !IS_LOGIN) ? fetchDatabase() : Promise.resolve();

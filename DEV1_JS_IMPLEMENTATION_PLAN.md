@@ -15,7 +15,7 @@ All application data lives inside a single JSON database file at the project roo
 1. **API Fetch (`assets/js/store.js`):** On every page load, `fetchDatabase()` calls `await fetch('./db.json')` (or `../db.json` inside `pages/` and `dev3/`).
 2. **State Persistence (`localStorage`):** When `db.json` arrives, `store.js` stores it under `localStorage` (`REPMS_DATABASE_V1`) if empty—or backfills missing keys without erasing user edits.
 3. **Reactive UI Sync (`repms:change`):** Whenever any page mutates data via `saveDB(db, activity)`, `store.js` writes back to `localStorage` and fires `repms:change` so all components refresh automatically.
-4. **No Login Barrier:** Visiting the site root (`index.html`) loads the Executive Dashboard immediately using the default profile (`Sarah Jenkins`). `login.html` only runs if the user clicks **Sign Out** or opens `login.html` directly.
+4. **Session Auth Gate:** Visiting `/` or any page without signing in redirects immediately (via `store.js` in `<head>`) to `login.html` with zero flash. Signing in accepts any valid email + password, stores a browser session (`sessionStorage` by default, or `localStorage` with **Remember me**), and then opens `index.html`.
 
 ```
 db.json ──(fetch() API call)──▶ store.js ──▶ localStorage ('REPMS_DATABASE_V1')
@@ -35,7 +35,7 @@ db.json ──(fetch() API call)──▶ store.js ──▶ localStorage ('REPM
 | `db.json` | Single JSON database for properties, floors/units, activity logs, escalations, tenants, leases, rent roll, financial config, work orders, vacancies, and ESG metrics. |
 | `vercel.json` | Static Vercel deployment header config (`Cache-Control: no-cache` on `/db.json`). |
 | `assets/js/store.js` | Loads `db.json` via `fetch()`, manages `localStorage` CRUD (`REPMS_STORE`), calculates live KPIs & unit occupancy %, and provides `window.repms` helpers (`byId`, `esc`, `money`, `shortMoney`, `toast`). |
-| `assets/js/shell.js` | Light/Dark theme persistence, optional login/sign-out session, `Ctrl+K` live search across pages/properties/tenants, and notification bell alerts. |
+| `assets/js/shell.js` | Light/Dark theme persistence, session login validation (any `@` email + password), `Ctrl+K` live search across pages/properties/tenants, and notification bell alerts. |
 | `assets/js/dashboard.js` | Hydrates 5 KPI cards, asset class occupancy bars, critical activity table, escalations, CSV export, and Quick Actions drawer form. |
 | `assets/js/portfolio.js` | Asset filter pills with live counts, dynamic property grid, Manage Asset & Add Property modals (`FormData`), and interactive Building Unit Stacker + Unit Editor modal. |
 
@@ -50,7 +50,7 @@ db.json ──(fetch() API call)──▶ store.js ──▶ localStorage ('REPM
    - **Build Command:** *(leave empty)*
    - **Output Directory:** `.` *(or leave empty)*
 4. After deploying (or before first deploy in **Project Settings → Git**), set **Production Branch** to **`Dev`** (or merge `Dev` into `main`), because `Dev` holds the complete HTML/CSS/JS + `db.json`.
-5. Open your `https://<project>.vercel.app` URL — it lands directly on `index.html` (Dashboard), fetches `/db.json` (`200 OK` in DevTools Network tab), and all pages (`pages/*`, `dev3/*`, `login.html`) work immediately.
+5. Open your `https://<project>.vercel.app` URL — unauthenticated visitors land directly on `login.html`; signing in opens `index.html`, fetches `/db.json` (`200 OK` in DevTools Network tab), and all pages (`pages/*`, `dev3/*`) work immediately.
 
 > **Local Testing Note:** Open via **VS Code Live Server** or `python -m http.server` rather than double-clicking `file://`, because browsers block `fetch('db.json')` on `file://` URLs.
 
@@ -58,7 +58,7 @@ db.json ──(fetch() API call)──▶ store.js ──▶ localStorage ('REPM
 
 ## 4. Viva Demo Checklist
 
-1. **Show `db.json` & Network Tab:** Open DevTools → **Network** → reload `index.html` to show `GET db.json` (`200 OK`) loading all initial portfolio records via JS `fetch()`.
-2. **Direct Dashboard Access + Login Flow:** Show that opening `/` lands directly on `index.html`, then click **Sign Out** → sign in on `login.html` with your email → navbar displays your name.
+1. **Show `db.json` & Network Tab:** Sign in on `login.html`, open DevTools → **Network** → reload `index.html` to show `GET db.json` (`200 OK`) loading all initial portfolio records via JS `fetch()`.
+2. **Auth Gate + Login Flow:** Show that opening `/` or any inner page without logging in immediately redirects to `login.html` (no static fallback user). Sign in with any email + password → navbar updates to your name, and **Sign Out** locks all routes again.
 3. **Interactive Unit Stacker (`pages/portfolio.html`):** Click Suite `1203` (Vacant) → set status to `Occupied` → save → show occupancy % recalculating live and updating `index.html` KPIs.
 4. **Cross-Module Sync:** Add a property in `portfolio.html` or log a work order from `index.html` Quick Actions → verify **Portfolio Value** / **Open Issues** / `dev3/maintenance.html` update automatically and survive browser refresh.
