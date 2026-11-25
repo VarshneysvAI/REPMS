@@ -1,32 +1,37 @@
 // Dev 1 (Shourya): Executive Dashboard (index.html)
 (function () {
-  const { byId, esc, shortMoney, toast } = window.repms;
-  const CLASSES = [['residential', 'Residential', 'bg-primary'], ['commercial', 'Commercial', 'bg-success'], ['retail', 'Retail', 'bg-warning'], ['industrial', 'Industrial', 'bg-info']];
+  const { byId, esc, shortMoney, csv, toast } = window.repms;
+  const CLASSES = [
+    { key: 'residential', label: 'Residential', color: 'bg-primary' },
+    { key: 'commercial', label: 'Commercial', color: 'bg-success' },
+    { key: 'retail', label: 'Retail', color: 'bg-warning' },
+    { key: 'industrial', label: 'Industrial', color: 'bg-info' }
+  ];
 
   function render() {
     const s = REPMS_STORE.properties.getDashboardSummary();
     const props = REPMS_STORE.properties.getAll();
 
-    byId('dashSubtitle').textContent = `Real-time telemetry across ${s.propertyCount} flagship properties and ${s.totalUnits} units`;
-    byId('kpiPortfolioValue').textContent = shortMoney(s.totalValue);
-    byId('kpiOccupancy').textContent = `${s.avgOccupancy}%`;
-    byId('kpiMonthlyRev').textContent = shortMoney(s.monthlyRev);
-    byId('kpiNoi').textContent = shortMoney(s.noiYtd);
-    byId('kpiOpenIssues').textContent = s.openIssuesCount;
-    byId('kpiOpenIssuesTrend').textContent = `${s.criticalCount} Critical`;
+    Object.entries({
+      dashSubtitle: `Real-time telemetry across ${s.propertyCount} flagship properties and ${s.totalUnits} units`,
+      kpiPortfolioValue: shortMoney(s.totalValue),
+      kpiOccupancy: `${s.avgOccupancy}%`,
+      kpiMonthlyRev: shortMoney(s.monthlyRev),
+      kpiNoi: shortMoney(s.noiYtd),
+      kpiOpenIssues: s.openIssuesCount,
+      kpiOpenIssuesTrend: `${s.criticalCount} Critical`
+    }).forEach(([id, text]) => { byId(id).textContent = text; });
 
-    byId('assetOccupancyList').innerHTML = CLASSES.map(([key, label, color]) => {
-      const list = props.filter(p => p.assetClass === key);
+    byId('assetOccupancyList').innerHTML = CLASSES.map(c => {
+      const list = props.filter(p => p.assetClass === c.key);
       if (!list.length) return '';
       const avg = Math.round(list.reduce((sum, p) => sum + Number(p.occupancyRate), 0) / list.length);
       return `<div>
         <div class="d-flex justify-content-between small mb-1">
-          <span class="fw-medium">${label} (${list.length} ${list.length === 1 ? 'Property' : 'Properties'})</span>
+          <span class="fw-medium">${c.label} (${list.length} ${list.length === 1 ? 'Property' : 'Properties'})</span>
           <span class="font-mono text-muted">${avg}%</span>
         </div>
-        <div class="progress" style="height:6px;background:var(--color-bg-surface-hover)">
-          <div class="progress-bar ${color}" style="width:${avg}%"></div>
-        </div>
+        <div class="progress" style="height:6px;background:var(--color-bg-surface-hover)"><div class="progress-bar ${c.color}" style="width:${avg}%"></div></div>
       </div>`;
     }).join('');
 
@@ -44,16 +49,24 @@
         <div class="text-${esc(e.level)} mt-1"><i class="bi ${esc(e.icon)} fs-5"></i></div>
         <div><div class="fw-bold text-${esc(e.level)} mb-1">${esc(e.title)}</div><div class="text-muted small">${esc(e.location)}</div></div>
       </div>`).join('');
+
+    const propSelect = byId('qaPropertySelect');
+    if (propSelect && props.length) {
+      const prev = propSelect.value;
+      propSelect.innerHTML = props.map(p => `<option value="${esc(p.name)}">${esc(p.name)}</option>`).join('');
+      if (prev) propSelect.value = prev;
+    }
   }
 
   byId('exportReportBtn')?.addEventListener('click', () => {
     const s = REPMS_STORE.properties.getDashboardSummary();
-    const csv = `Metric,Value\nPortfolio Value,${shortMoney(s.totalValue)}\nOccupancy,${s.avgOccupancy}%\nMonthly Rev,${shortMoney(s.monthlyRev)}\nNOI YTD,${shortMoney(s.noiYtd)}\nOpen Issues,${s.openIssuesCount}`;
-    Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([csv], { type: 'text/csv' })), download: 'repms-executive-report.csv' }).click();
+    csv('repms-executive-report.csv', [
+      ['Metric', 'Value'], ['Portfolio Value', shortMoney(s.totalValue)], ['Occupancy', `${s.avgOccupancy}%`],
+      ['Monthly Rev', shortMoney(s.monthlyRev)], ['NOI YTD', shortMoney(s.noiYtd)], ['Open Issues', s.openIssuesCount]
+    ]);
     toast('Executive summary CSV exported!');
   });
 
-  // Quick Action Drawer (1 handler map drives all 4 actions)
   const ACTIONS = {
     workOrder: { title: 'Create Work Order', label: 'Issue & Unit (e.g. HVAC - Unit 402)', btn: 'Submit Ticket', run: (p, v) => REPMS_STORE.maintenance.addWorkOrder({ property: p, unit: 'Main Unit', issue: v, priority: 'Critical' }) },
     payment:   { title: 'Log Manual Payment', label: 'Tenant & Amount (e.g. Apex Capital)', btn: 'Record Payment', run: (p, v) => REPMS_STORE.financials.addPayment({ property: p, tenant: v, totalDue: 5000 }) },
@@ -62,9 +75,6 @@
   };
 
   let currentAction = null;
-  const propSelect = byId('qaPropertySelect');
-  if (propSelect) propSelect.innerHTML = REPMS_STORE.properties.getAll().map(p => `<option value="${esc(p.name)}">${esc(p.name)}</option>`).join('');
-
   document.querySelectorAll('[data-quick-action]').forEach(btn => btn.addEventListener('click', () => {
     currentAction = btn.dataset.quickAction;
     const cfg = ACTIONS[currentAction];
@@ -79,7 +89,7 @@
     e.preventDefault();
     const val = byId('qaInputValue').value.trim();
     if (!val || !currentAction) return;
-    ACTIONS[currentAction].run(propSelect.value, val);
+    ACTIONS[currentAction].run(byId('qaPropertySelect').value, val);
     byId('quickActionFormBox').classList.add('d-none');
     bootstrap.Offcanvas.getInstance(byId('quickActionDrawer'))?.hide();
     toast(`${ACTIONS[currentAction].title} saved!`);

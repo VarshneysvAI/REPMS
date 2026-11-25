@@ -1,0 +1,175 @@
+{
+  "properties": [
+    {
+      "id": "PROP-001",
+      "name": "Skyline Executive Tower",
+      "assetClass": "commercial",
+      "address": "100 Financial Dist, NY",
+      "image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&h=400&fit=crop",
+      "totalUnits": 48,
+      "occupancyRate": 95.8,
+      "capRate": 6.2,
+      "valuation": 52000000,
+      "monthlyRevenue": 480000,
+      "floors": [
+        {
+          "floor": "FL 12",
+          "units": [
+            { "unit": "1201", "tenant": "Apex Global", "sqft": 3200, "rent": 14500, "status": "occupied" },
+            { "unit": "1202", "tenant": "Horizon Legal", "sqft": 2800, "rent": 12800, "status": "occupied" },
+            { "unit": "1203", "tenant": "VACANT AVAILABLE", "sqft": 3100, "rent": 14000, "status": "vacant" },
+            { "unit": "1204", "tenant": "Quantum Labs", "sqft": 3500, "rent": 16000, "status": "occupied" }
+          ]
+        },
+        {
+          "floor": "FL 11",
+          "units": [
+            { "unit": "1101", "tenant": "Omega Partners", "sqft": 3200, "rent": 14200, "status": "occupied" },
+            { "unit": "1102", "tenant": "Turnaround (Expected Jun 1)", "sqft": 2900, "rent": 0, "status": "renovating" },
+            { "unit": "1103", "tenant": "Stellar Media", "sqft": 3100, "rent": 13500, "status": "occupied" },
+            { "unit": "1104", "tenant": "Nexus Corp", "sqft": 3500, "rent": 15500, "status": "occupied" }
+          ]
+        },
+        {
+          "floor": "FL 10",
+          "units": [
+            { "unit": "1001", "label": "1001 (Full Half-Floor)", "tenant": "Cloud Systems", "sqft": 6000, "rent": 25000, "status": "occupied", "flex": 2 },
+            { "unit": "1003", "tenant": "Vector AI", "sqft": 3100, "rent": 13000, "status": "occupied" },
+            { "unit": "1004", "tenant": "Delinquent - 60 Days Overdue", "sqft": 3100, "rent": 13200, "status": "delinquent" }
+          ]
+        },
+        {
+          "floor": "FL 09",
+          "units": [
+            { "unit": "901", "label": "901 (Full Floor Tenant)", "tenant": "BlueOcean", "sqft": 12600, "rent": 52000, "status": "occupied" }
+          ]
+        },
+        {
+          "floor": "FL 08",
+          "units": [
+            { "unit": "801", "tenant": "VACANT AVAILABLE", "sqft": 6000, "rent": 24000, "status": "vacant", "flex": 2 },
+            { "unit": "803", "tenant": "Vertex Capital", "sqft": 3100, "rent": 12500, "status": "occupied" },
+            { "unit": "804", "tenant": "Vertex Capital", "sqft": 3500, "rent": 14000, "status": "occupied" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PROP-002",
+      "name": "Oakwood Luxury Res",
+      "assetClass": "residential",
+      "address": "400 Park Ave, NY",
+      "image": "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&h=400&fit=crop",
+      "totalUnits": 120,
+      "occupancyRate": 98.2,
+      "capRate": 5.4,
+      "valuation": 38400000,
+      "monthlyRevenue": 340000,
+      "floors": [
+        {
+          "floor": "FL 04",
+          "units": [
+            { "unit": "401", "tenant": "Sophia Chen", "sqft": 1850, "rent": 7200, "status": "occupied" },
+            { "unit": "402", "tenant": "Daniel Carter", "sqft": 1650, "rent": 5200, "status": "renovating" },
+            { "unit": "403", "tenant": "VACANT AVAILABLE", "sqft": 1900, "rent": 7400, "status": "vacant" }
+          ]
+        },
+        {
+          "floor": "FL 03",
+          "units": [
+            { "unit": "301", "tenant": "Elena Rostova", "sqft": 1400, "rent": 3850, "status": "occupied" },
+            { "unit": "302", "tenant": "Liam Vance", "sqft": 1600, "rent": 5100, "status": "occupied" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PROP-003",
+      "name": "Metro Central Galleria",
+      "assetClass": "retail",
+      "address": "800 Broadway, NY",
+      "image": "https://images.unsplash.com/photo-1519999482648-25049ddd37b1?w=600&h=400&fit=crop",
+      "totalUnits": 42,
+      "occupancyRate": 88.0,
+      "capRate": 7.1,
+      "valuation": 24200000,
+      "monthlyRevenue": 210000,
+      "floors": []
+    },
+    {
+      "id": "PROP-004",
+      "name": "Logistics Park North",
+      "assetClass": "industrial",
+      "address": "1000 Industrial Pkwy, NJ",
+      "image": "https://images.unsplash.com/photo-1586528116311-ad8ed745333c?w=600&h=400&fit=crop",
+      "totalUnits": 16,
+      "occupancyRate": 100.0,
+      "capRate": 6.8,
+      "valuation": 28200000,
+      "monthlyRevenue": 170000,
+      "floors": []
+    }
+  ],
+  "recentActivity": [
+    { "property": "Skyline Tower", "icon": "bi-building text-primary", "event": "Lease Renewal: Apex Global", "status": "Completed", "badge": "success", "time": "10m ago" },
+    { "property": "Oakwood Res", "icon": "bi-house text-info", "event": "HVAC Failure (Unit 402)", "status": "Urgent", "badge": "danger", "time": "1h ago" },
+    { "property": "Metro Retail", "icon": "bi-shop text-warning", "event": "Rent Payment Overdue", "status": "Pending", "badge": "warning", "time": "3h ago" }
+  ],
+  "escalations": [
+    { "title": "Water Leak (Major)", "location": "Oakwood Res - Tower B", "level": "danger", "icon": "bi-water" },
+    { "title": "2 Major Leases Expiring", "location": "Skyline Tower - Next 30 Days", "level": "warning", "icon": "bi-file-earmark-text" }
+  ],
+  "tenants": [
+    { "id": "TEN-101", "name": "Apex Capital LLC", "property": "Skyline Executive Tower", "unit": "Ste 1201", "monthlyRent": 14500, "paymentStatus": "Active" },
+    { "id": "TEN-102", "name": "Elena Rostova", "property": "Oakwood Luxury Res", "unit": "Unit 301", "monthlyRent": 3850, "paymentStatus": "Active" },
+    { "id": "TEN-103", "name": "Urban Goods Ltd.", "property": "Metro Central Galleria", "unit": "Bay 104", "monthlyRent": 8600, "paymentStatus": "Delinquent" }
+  ],
+  "leases": [
+    { "id": "LSE-001", "tenantName": "Apex Capital LLC", "unit": "Ste 1201", "stage": "active", "monthlyRent": 14500, "endDate": "2028-12-31" },
+    { "id": "LSE-002", "tenantName": "Horizon Legal", "unit": "Ste 1202", "stage": "renewal", "monthlyRent": 12800, "endDate": "2026-12-15" }
+  ],
+  "rentRoll": [
+    { "invoiceId": "INV-1001", "property": "Skyline Tower", "tenant": "Apex Capital LLC", "totalDue": 14500, "dueDate": "2026-09-01", "status": "Paid" },
+    { "invoiceId": "INV-1002", "property": "Metro Retail", "tenant": "Urban Goods Ltd.", "totalDue": 8600, "dueDate": "2026-09-03", "status": "Overdue" }
+  ],
+  "financialConfig": {
+    "monthlyExpenses": 382000,
+    "revenueHistory6m": [
+      { "label": "Apr", "value": 182000 },
+      { "label": "May", "value": 205000 },
+      { "label": "Jun", "value": 198000 },
+      { "label": "Jul", "value": 224000 },
+      { "label": "Aug", "value": 211000 },
+      { "label": "Sep", "value": 242000 }
+    ],
+    "revenueHistory12m": [
+      { "label": "Oct", "value": 146000 },
+      { "label": "Nov", "value": 152000 },
+      { "label": "Dec", "value": 168000 },
+      { "label": "Jan", "value": 173000 },
+      { "label": "Feb", "value": 166000 },
+      { "label": "Mar", "value": 179000 },
+      { "label": "Apr", "value": 182000 },
+      { "label": "May", "value": 205000 },
+      { "label": "Jun", "value": 198000 },
+      { "label": "Jul", "value": 224000 },
+      { "label": "Aug", "value": 211000 },
+      { "label": "Sep", "value": 242000 }
+    ]
+  },
+  "workOrders": [
+    { "id": "WO-1048", "property": "Skyline Tower", "unit": "Unit 1204", "issue": "HVAC Failure", "priority": "Critical", "assignedTo": "Apex HVAC Services", "status": "In Progress" },
+    { "id": "WO-1047", "property": "Oakwood Residences", "unit": "Unit 402", "issue": "Water Leak", "priority": "High", "assignedTo": "QuickFix Plumbing", "status": "Open" },
+    { "id": "WO-1046", "property": "Metro Galleria", "unit": "Unit 108", "issue": "Panel Breaker Fault", "priority": "Critical", "assignedTo": "Bright Electric Co.", "status": "Open" }
+  ],
+  "vacancies": [
+    { "id": "VAC-1203", "property": "Skyline Executive Tower", "unit": "Ste 1203", "category": "commercial", "sqft": 3100, "monthlyRent": 14000 }
+  ],
+  "leads": [],
+  "esg": {
+    "energyStarScore": 92,
+    "solarGenerationKwh": 342000,
+    "gridConsumptionKwh": 618000,
+    "carbonOffsetTons": 1840
+  }
+}

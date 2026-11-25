@@ -3,8 +3,8 @@
 
 > **Academic Section:** Section AB — **Project Group:** Group 15  
 > **Team Members:** Shourya (Dev 1), Shikhar (Dev 2), Shatakshi (Dev 3), Shakti Dubey (Dev 4)  
-> **Tech Stack:** **Pure Client-Side JavaScript (ES6+ Vanilla JS)** + Bootstrap 5.3 Bundle + `localStorage` *(Zero Node.js runtime, zero npm build steps)*.  
-> **Current Status:** **Dev 1 Core & Modules Complete** (`assets/js/store.js`, `shell.js`, `dashboard.js`, `portfolio.js`). Devs 2, 3, and 4 wire their pages directly onto this shared base.
+> **Tech Stack:** **Pure Client-Side JavaScript (`fetch()` API + ES6+ Vanilla JS)** + `db.json` + Bootstrap 5.3 + `localStorage` *(Zero Node.js runtime, zero npm build steps)*.  
+> **Current Status:** **Dev 1 & Dev 3 Complete** (`db.json`, `vercel.json`, `store.js`, `shell.js`, `dashboard.js`, `portfolio.js`, `financials.js`, `maintenance.js`). Devs 2 and 4 wire their pages onto this shared base.
 
 ---
 
@@ -59,10 +59,10 @@ Mini project 2 REPMS/
 
 ## 2. Shared Data Engine & Utilities (Already Live in `store.js` & `shell.js`)
 
-### 2.1 How Data is Stored & Seeded
-- **Storage Key:** `localStorage` under `'REPMS_DATABASE_V1'`.
-- **Auto-Seeding:** On first visit, `store.js` clones `SEED_DATA` into `localStorage`.
-- **Live Sync Event:** Calling `REPMS_STORE.save(db, optionalActivity)` saves to `localStorage`, caps `recentActivity` at 8 entries (visible on Dashboard!), and fires `window.dispatchEvent(new CustomEvent('repms:change', { detail: db }))`.
+### 2.1 How Data is Loaded & Stored
+- **Single Source File (`db.json`):** All initial properties, units, activity logs, tenants, leases, rent roll, financial config, work orders, vacancies, and ESG metrics live in root `db.json`.
+- **Fetch API Initialization:** On load, `store.js` runs `await fetch(BASE_PATH + 'db.json')` (`REPMS_STORE.ready`), seeds `localStorage` (`'REPMS_DATABASE_V1'`) if empty, and fires `repms:change`.
+- **Live Sync Event:** Calling `REPMS_STORE.save(db, optionalActivity)` saves mutations to `localStorage`, caps `recentActivity` at 8 entries, and fires `repms:change` so all active panels refresh automatically.
 
 ### 2.2 Global APIs Available on Every Page
 

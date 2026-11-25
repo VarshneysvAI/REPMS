@@ -1,18 +1,23 @@
-// Dev 1 (Shourya): Portfolio & Interactive Unit Stacker (pages/portfolio.html)
+// Dev 1 (Shourya): Portfolio Directory & Interactive Unit Stacker (pages/portfolio.html)
 (function () {
-  const { byId, esc, money, shortMoney, toast } = window.repms;
+  const { byId, esc, money, shortMoney, modal, toast } = window.repms;
   const BADGE = { commercial: 'bg-primary', residential: 'bg-info', retail: 'bg-warning text-dark', industrial: 'bg-secondary' };
-  let filter = 'all', stackPropId = 'PROP-001', tips = [];
+  let filter = 'all', stackPropId = 'PROP-001', tooltips = [];
+
+  const fillForm = (form, data) => Object.entries(data).forEach(([k, v]) => { if (form[k]) form[k].value = v; });
 
   function renderStacker() {
-    tips.forEach(t => t.dispose());
+    tooltips.forEach(t => t.dispose());
+    tooltips = [];
     const prop = REPMS_STORE.properties.getUnitStack(stackPropId);
+    if (!prop?.floors) return;
+
     const units = prop.floors.flatMap(f => f.units);
     byId('stackerTitle').textContent = `Building Unit Stacker — ${prop.name}`;
     byId('stackerSubtitle').textContent = `${prop.assetClass.toUpperCase()} • ${prop.floors.length} Floors • ${units.length} Suites • ${prop.occupancyRate}% Leased`;
 
-    [['legOccupied', 'occupied'], ['legVacant', 'vacant'], ['legRenovating', 'renovating'], ['legDelinquent', 'delinquent']]
-      .forEach(([id, status]) => { byId(id).textContent = units.filter(u => u.status === status).length; });
+    const counts = { legOccupied: 'occupied', legVacant: 'vacant', legRenovating: 'renovating', legDelinquent: 'delinquent' };
+    Object.entries(counts).forEach(([id, status]) => { byId(id).textContent = units.filter(u => u.status === status).length; });
 
     const grid = byId('unitStackerGrid');
     grid.innerHTML = prop.floors.map(f => `
@@ -24,15 +29,15 @@
             data-unit="${esc(u.unit)}" data-floor="${esc(f.floor)}">${esc(u.label || u.unit)}</div>`).join('')}
         </div>
       </div>`).join('');
-    tips = [...grid.querySelectorAll('[data-bs-toggle="tooltip"]')].map(el => new bootstrap.Tooltip(el));
+    tooltips = [...grid.querySelectorAll('[data-bs-toggle="tooltip"]')].map(el => new bootstrap.Tooltip(el));
   }
 
   function render() {
     const all = REPMS_STORE.properties.getAll();
     document.querySelectorAll('#portfolioFilters [data-filter]').forEach(btn => {
       const f = btn.dataset.filter;
-      const n = f === 'all' ? all.length : all.filter(p => p.assetClass === f).length;
-      btn.textContent = `${f[0].toUpperCase() + f.slice(1)} (${n})`;
+      const count = f === 'all' ? all.length : all.filter(p => p.assetClass === f).length;
+      btn.textContent = `${f[0].toUpperCase() + f.slice(1)} (${count})`;
       btn.classList.toggle('active', f === filter);
     });
 
@@ -56,7 +61,7 @@
       </div>`;
     }).join('') : '<div class="col-12 text-center text-muted py-5">No properties in this asset class yet.</div>';
 
-    byId('stackerPropertySelect').innerHTML = all.filter(p => p.floors.length)
+    byId('stackerPropertySelect').innerHTML = all.filter(p => p.floors?.length)
       .map(p => `<option value="${esc(p.id)}" ${p.id === stackPropId ? 'selected' : ''}>${esc(p.name)}</option>`).join('');
     renderStacker();
   }
@@ -65,32 +70,27 @@
     const btn = e.target.closest('[data-filter]');
     if (btn) { filter = btn.dataset.filter; render(); }
   });
-
   byId('stackerPropertySelect')?.addEventListener('change', (e) => { stackPropId = e.target.value; renderStacker(); });
 
-  // Open & Save Unit Modal
   byId('unitStackerGrid')?.addEventListener('click', (e) => {
     const tile = e.target.closest('[data-unit]');
-    if (!tile) return;
-    const prop = REPMS_STORE.properties.getUnitStack(stackPropId);
-    const u = prop.floors.flatMap(f => f.units).find(x => x.unit === tile.dataset.unit);
-    if (!u) return;
-    byId('unitModalTitle').textContent = `${prop.name} — Suite ${u.unit} (${tile.dataset.floor})`;
-    byId('editUnitSqft').textContent = `${u.sqft.toLocaleString()} sqft`;
-    const f = byId('unitDetailForm');
-    f.unit.value = u.unit; f.tenant.value = u.tenant; f.rent.value = u.rent; f.status.value = u.status;
-    bootstrap.Modal.getOrCreateInstance(byId('unitDetailModal')).show();
+    const prop = tile && REPMS_STORE.properties.getUnitStack(stackPropId);
+    const unit = prop?.floors.flatMap(f => f.units).find(x => x.unit === tile.dataset.unit);
+    if (!unit) return;
+    byId('unitModalTitle').textContent = `${prop.name} — Suite ${unit.unit} (${tile.dataset.floor})`;
+    byId('editUnitSqft').textContent = `${unit.sqft.toLocaleString()} sqft`;
+    fillForm(byId('unitDetailForm'), unit);
+    modal('unitDetailModal', true);
   });
 
   byId('unitDetailForm')?.addEventListener('submit', (e) => {
     e.preventDefault();
     const d = Object.fromEntries(new FormData(e.target));
-    REPMS_STORE.properties.updateUnit(stackPropId, d.unit, { tenant: d.tenant.trim() || 'VACANT AVAILABLE', rent: +d.rent || 0, status: d.status });
-    bootstrap.Modal.getInstance(byId('unitDetailModal'))?.hide();
+    REPMS_STORE.properties.updateUnit(stackPropId, d.unit, { tenant: d.tenant.trim() || 'VACANT AVAILABLE', rent: Number(d.rent) || 0, status: d.status });
+    modal('unitDetailModal', false);
     toast(`Suite ${d.unit} updated!`);
   });
 
-  // Open & Save Asset Modal
   byId('propertyGrid')?.addEventListener('click', (e) => {
     const btn = e.target.closest('.manage-asset-btn');
     const p = btn && REPMS_STORE.properties.getById(btn.dataset.propId);
@@ -99,31 +99,29 @@
     byId('assetModalAddress').textContent = p.address;
     byId('assetModalVal').textContent = shortMoney(p.valuation);
     byId('assetModalCap').textContent = `${p.capRate}%`;
-    const f = byId('assetDetailForm');
-    f.id.value = p.id; f.occupancyRate.value = p.occupancyRate; f.monthlyRevenue.value = p.monthlyRevenue;
-    bootstrap.Modal.getOrCreateInstance(byId('assetDetailModal')).show();
+    fillForm(byId('assetDetailForm'), p);
+    modal('assetDetailModal', true);
   });
 
   byId('assetDetailForm')?.addEventListener('submit', (e) => {
     e.preventDefault();
     const d = Object.fromEntries(new FormData(e.target));
-    REPMS_STORE.properties.update(d.id, { occupancyRate: Math.min(100, Math.max(0, +d.occupancyRate || 0)), monthlyRevenue: +d.monthlyRevenue || 0 });
-    bootstrap.Modal.getInstance(byId('assetDetailModal'))?.hide();
+    REPMS_STORE.properties.update(d.id, { occupancyRate: Math.min(100, Math.max(0, Number(d.occupancyRate) || 0)), monthlyRevenue: Number(d.monthlyRevenue) || 0 });
+    modal('assetDetailModal', false);
     toast('Property telemetry updated!');
   });
 
-  // Add Property Modal
   byId('addPropertyForm')?.addEventListener('submit', (e) => {
     e.preventDefault();
     const d = Object.fromEntries(new FormData(e.target));
     REPMS_STORE.properties.add({
       name: d.name.trim(), assetClass: d.assetClass, address: d.address.trim(),
-      totalUnits: +d.totalUnits || 10, occupancyRate: +d.occupancyRate || 90,
-      valuation: (+d.valuationM || 10) * 1e6, monthlyRevenue: (+d.revK || 100) * 1e3,
+      totalUnits: Number(d.totalUnits) || 10, occupancyRate: Number(d.occupancyRate) || 90,
+      valuation: (Number(d.valuationM) || 10) * 1e6, monthlyRevenue: (Number(d.revK) || 100) * 1e3,
       capRate: 6.0, image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop'
     });
     e.target.reset();
-    bootstrap.Modal.getInstance(byId('addPropertyModal'))?.hide();
+    modal('addPropertyModal', false);
     toast('New property added!');
   });
 
